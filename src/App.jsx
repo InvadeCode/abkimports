@@ -42,11 +42,11 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [activePage, setActivePage] = useState('home');
 
-  // Preloader Logic
+  // Preloader Logic: Fades in the logo with color, then hides preloader
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); 
+    }, 2500); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -55,6 +55,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activePage]);
 
+  // Subtle interactive parallax effect
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
     const x = (clientX / window.innerWidth - 0.5) * 8; 
@@ -68,7 +69,7 @@ export default function App() {
 
   return (
     <>
-      {/* --- PRELOADER --- */}
+      {/* --- PRELOADER (Logo fades to color) --- */}
       <div className={`fixed inset-0 z-[100] bg-white flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="relative">
           <img 
@@ -95,20 +96,22 @@ export default function App() {
         <style dangerouslySetInnerHTML={{__html: `
           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
           
+          /* Preloader Animation */
           @keyframes wipe {
             0% { clip-path: inset(100% 0 0 0); }
             100% { clip-path: inset(0 0 0 0); }
           }
           
+          /* Page Transition Animation */
           @keyframes pageFadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
           }
-          
           .animate-page-fade-in {
             animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
 
+          /* Marquee Animations */
           @keyframes scroll-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -117,11 +120,13 @@ export default function App() {
             0% { transform: translateX(-50%); }
             100% { transform: translateX(0); }
           }
-
           .animate-scroll-left { animation: scroll-left 45s linear infinite; }
           .animate-scroll-right { animation: scroll-right 45s linear infinite; }
+          
+          /* Deep Shadows */
           .card-shadow { box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.15), 0 0 10px rgba(0, 0, 0, 0.04); }
 
+          /* Left-to-Right Wiping Button Hovers */
           .slide-bg-primary {
             background: linear-gradient(to right, #b03929 50%, #D84835 50%);
             background-size: 200% 100%;
@@ -139,9 +144,10 @@ export default function App() {
           .slide-bg-secondary:hover { background-position: 0 0; }
         `}} />
         
+        {/* Advanced SEO & AIO Hidden Context */}
         <div className="sr-only">
           <h1>ABK Imports: India's Premier Wholesale Pet Products Distributor</h1>
-          <p>India's premier importer and B2B distributor of premium pet food, grooming supplies, and accessories.</p>
+          <p>India's premier importer and B2B distributor of premium pet food, grooming supplies, and accessories. We supply top global brands like Orijen, Acana, Kong, and Trixie to over 3000 retailers nationwide.</p>
           <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WholesaleStore",
@@ -152,16 +158,18 @@ export default function App() {
           })}} />
         </div>
         
-        {/* 1. Floating Navigation Bar */}
-        <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-[3vw] pointer-events-none">
-          <nav aria-label="Main Navigation" className="pointer-events-auto relative flex items-center justify-between px-5 py-3 w-full bg-white/95 backdrop-blur-md rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
+        {/* 1. Floating Navigation Bar (100vw, 2% padding) */}
+        <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-[2vw] pointer-events-none">
+          <nav aria-label="Main Navigation" className="pointer-events-auto relative flex items-center justify-between px-5 py-3 w-full bg-white/95 backdrop-blur-md rounded-[12px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
+            {/* Logo */}
             <button onClick={() => setActivePage('home')} className="flex items-center gap-2 pl-2 focus:outline-none">
               <img src="https://www.abkgrooming.com/cdn/shop/files/abk_red_logo.png" alt="ABK Imports Logo" className="h-[30px] md:h-[35px] object-contain" />
             </button>
             
-            {/* Increased gaps (gap-8 xl:gap-12) to beautifully spread out the menu items */}
+            {/* Centered Links (Left-Aligned Structure internally) */}
             <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-12 text-[13px] font-semibold text-slate-600">
             
+              {/* Massive Consolidated About Us Mega Menu */}
               <NavMegaMenu 
                 title="About Us"
                 featuredTitle={<>Discover<br/>Our Story.</>}
@@ -188,8 +196,8 @@ export default function App() {
               <button onClick={() => setActivePage('contact')} className="hover:text-[#D84835] transition-colors py-2 focus:outline-none">Contact</button>
             </div>
             
-            {/* Replaced Retailer Login with Social Icons */}
-            <div className="flex items-center gap-5 text-slate-400 pr-4">
+            {/* Social Icons & Retailer Login (Right Aligned) */}
+            <div className="flex items-center gap-5 text-slate-400 pr-2">
               <a href="#" aria-label="LinkedIn" className="hover:text-[#D84835] transition-colors focus:outline-none">
                 <Linkedin size={18} />
               </a>
@@ -201,6 +209,7 @@ export default function App() {
         </div>
 
         {/* --- ROUTING SWITCH --- */}
+        {/* Ensures soft fade transitions between pages */}
         <div className="flex-1 w-full animate-page-fade-in" key={activePage}>
           {activePage === 'home' && <HomePage mousePos={mousePos} openCatalog={openCatalog} />}
           {activePage === 'about' && <AboutPage openCatalog={openCatalog} />}
@@ -215,9 +224,10 @@ export default function App() {
           {activePage === 'contact' && <ContactPage />}
         </div>
 
-        {/* --- GLOBAL PRE-FOOTER --- */}
+        {/* --- GLOBAL PRE-FOOTER (Curved Reveal Illusion) --- */}
+        {/* This creates the illusion that the footer is revealed from underneath. */}
         {activePage !== 'contact' && (
-          <section className="pt-24 pb-40 px-[3vw] bg-white relative z-20 -mb-24 rounded-b-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full text-left">
+          <section className="pt-24 pb-40 px-[2vw] bg-white relative z-20 -mb-24 rounded-b-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full text-left">
             <div className="w-full">
               <FadeInSection>
                 <div className="relative rounded-[16px] overflow-hidden bg-slate-900 text-white shadow-2xl border border-slate-800">
@@ -259,10 +269,11 @@ export default function App() {
         )}
 
         {/* --- GLOBAL DETAILED FOOTER --- */}
-        <footer className="bg-slate-950 text-slate-400 pt-36 pb-12 px-[3vw] relative z-0 w-full text-left">
+        <footer className="bg-slate-950 text-slate-400 pt-36 pb-12 px-[2vw] relative z-0 w-full text-left">
           <div className="w-full">
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+              {/* Branding Col */}
               <div className="lg:col-span-4 pr-4">
                 <img src="https://www.abkgrooming.com/cdn/shop/files/abk_red_logo.png" alt="ABK Imports Logo" className="h-8 mb-8 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
                 <p className="text-[13px] leading-relaxed mb-8 max-w-sm font-normal">
@@ -275,6 +286,7 @@ export default function App() {
                 </div>
               </div>
               
+              {/* Links Col 1 */}
               <div className="lg:col-span-2">
                 <h4 className="text-white font-bold mb-6 text-[11px] uppercase tracking-widest">Company</h4>
                 <nav aria-label="Footer Company Links">
@@ -288,6 +300,7 @@ export default function App() {
                 </nav>
               </div>
               
+              {/* Links Col 2 */}
               <div className="lg:col-span-2">
                 <h4 className="text-white font-bold mb-6 text-[11px] uppercase tracking-widest">Retailers</h4>
                 <nav aria-label="Footer Retailer Links">
@@ -301,6 +314,7 @@ export default function App() {
                 </nav>
               </div>
               
+              {/* Contact Card */}
               <address className="lg:col-span-4 bg-slate-900/40 p-8 rounded-[12px] border border-slate-800/50 not-italic">
                 <h4 className="text-white font-bold mb-6 text-[11px] uppercase tracking-widest flex items-center gap-2">
                   <Phone className="w-4 h-4 text-[#D84835]" aria-hidden="true" /> Get In Touch
@@ -348,44 +362,49 @@ export default function App() {
 }
 
 // ---------------------------
-// PAGE COMPONENTS
+// FROZEN HOME PAGE HERO & SECTIONS
 // ---------------------------
 
 function HomePage({ mousePos, openCatalog }) {
   return (
     <>
       {/* 2. Cohesive Interactive Hero Section (FROZEN LAYOUT) */}
-      <section className="relative w-full flex flex-col items-center pt-40 pb-12 min-h-[calc(100vh-80px)] overflow-hidden">
+      <section className="relative w-full flex flex-col items-center pt-44 pb-12 min-h-[calc(100vh-80px)] overflow-hidden">
         
-        {/* Interactive Background Grid (Hover Glow with custom mask) */}
+        {/* Interactive Background Grid (Faded Squares with Localized Radial Mask) */}
         <div 
-          className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-300"
+          className="absolute inset-0 z-0 pointer-events-none opacity-[0.4] transition-transform duration-200 ease-out"
           style={{
-            backgroundImage: 'linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)',
             backgroundSize: '100px 100px',
-            maskImage: `radial-gradient(circle 350px at calc(50% + ${mousePos.x * 20}px) calc(50% + ${mousePos.y * 20}px), black, transparent)`,
-            WebkitMaskImage: `radial-gradient(circle 350px at calc(50% + ${mousePos.x * 20}px) calc(50% + ${mousePos.y * 20}px), black, transparent)`
+            maskImage: `radial-gradient(circle 500px at calc(50% + ${mousePos.x * 20}px) calc(50% + ${mousePos.y * 20}px), black, transparent)`,
+            WebkitMaskImage: `radial-gradient(circle 500px at calc(50% + ${mousePos.x * 20}px) calc(50% + ${mousePos.y * 20}px), black, transparent)`
           }}
         ></div>
 
         {/* Hero Copy */}
         <div className="relative z-30 flex flex-col items-center">
           
+          {/* Animated Gradient Border Badge */}
           <div className="relative p-[1px] rounded-[9px] overflow-hidden mb-6 cursor-pointer group">
+            {/* Spinning gradient for the border glow */}
             <div className="absolute inset-0 bg-[#f4cccc] group-hover:bg-[#eebaba] transition-colors"></div>
             <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_280deg,#D84835_360deg)] animate-[spin_3s_linear_infinite]"></div>
             
+            {/* Inner pill content */}
             <div className="relative flex items-center gap-1.5 bg-[#fdf6f5] rounded-[8px] px-3.5 py-1.5 z-10">
               <Sparkles size={12} className="text-[#D84835]" />
               <span className="text-[10px] font-bold text-[#D84835] tracking-widest uppercase">New Global Brands Added</span>
             </div>
           </div>
           
-          <h1 className="text-[32px] md:text-[42px] font-bold tracking-tight text-center max-w-4xl px-4 leading-[1.2] text-slate-900">
+          {/* Reduced Font Sizes */}
+          <h1 className="text-[28px] md:text-[40px] font-bold tracking-tight text-center max-w-4xl px-4 leading-[1.2] text-slate-900">
             Discover <span className="text-[#D84835]">winning pet products</span><br className="hidden md:block" /> your customers will love
           </h1>
           
-          <p className="mt-4 text-sm md:text-[15px] text-slate-500 text-center max-w-3xl px-4 font-normal leading-relaxed">
+          {/* Reduced Font Sizes */}
+          <p className="mt-4 text-[13px] md:text-[14px] text-slate-500 text-center max-w-3xl px-4 font-normal leading-relaxed">
             Partner with India's most trusted wholesale pet distributor. Find trending dog and cat supplies, optimize your retail inventory, and effortlessly grow your business with high-demand brands.
           </p>
           
@@ -403,28 +422,51 @@ function HomePage({ mousePos, openCatalog }) {
         {/* 3. The Interactive Split Pyramid Scroller */}
         <div className="relative w-full mt-6 flex flex-col items-center justify-start flex-1 min-h-[450px]">
           
+          {/* CSS Keyframes */}
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes scroll-left {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            @keyframes scroll-right {
+              0% { transform: translateX(-50%); }
+              100% { transform: translateX(0); }
+            }
+            /* Deepened the shadow significantly so the white cards pop inside the beam */
+            .card-shadow { box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.15), 0 0 10px rgba(0, 0, 0, 0.04); }
+          `}} />
+
+          {/* LAYER 1: Background Skeletons */}
           <div className="absolute inset-0 z-0 opacity-50">
              <ScrollerTrack CardComponent={SkeletonCard} />
           </div>
 
+          {/* LAYER 2: The Pyramid Light Beam (Interactive Parallax) */}
           <div 
             className="absolute inset-0 z-10 pointer-events-none transition-transform duration-200 ease-out"
             style={{ 
               clipPath: 'polygon(20% 50%, 100% -40%, 100% 140%)',
               background: 'linear-gradient(90deg, transparent 20%, rgba(216, 72, 53, 0.12) 20%, rgba(216, 72, 53, 0.04) 45%, rgba(255, 255, 255, 0) 100%)',
+              transform: `translateX(${mousePos.x * 0.5}px) translateY(${mousePos.y * 0.5}px)`
             }}
           ></div>
 
+          {/* LAYER 3: Foreground Real Cards (Clipped to the moving right-facing beam) */}
           <div className="absolute inset-0 z-20 pointer-events-none" style={{ clipPath: 'polygon(20% 50%, 100% -40%, 100% 140%)' }}>
              <div className="absolute inset-0 pointer-events-auto">
                <ScrollerTrack CardComponent={ProductCard} />
              </div>
           </div>
 
+          {/* LAYER 4: Fade edges to blend the scroll */}
           <div className="absolute left-0 top-0 w-40 h-full bg-gradient-to-r from-white to-transparent z-40 pointer-events-none"></div>
           <div className="absolute right-0 top-0 w-40 h-full bg-gradient-to-l from-white to-transparent z-40 pointer-events-none"></div>
 
-          <div className="absolute top-1/2 left-[20%] -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
+          {/* LAYER 5: Central Generator Box (Parallax) with ABK Logo Inverted */}
+          <div 
+            className="absolute top-1/2 left-[20%] -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none transition-transform duration-200 ease-out"
+            style={{ transform: `translate(calc(-50% + ${mousePos.x}px), calc(-50% + ${mousePos.y}px))` }}
+          >
             <div className="relative w-[110px] h-[110px] p-6 slide-bg-primary rounded-[24px] shadow-[0_4px_40px_rgba(216,72,53,0.4)] flex items-center justify-center border-[3px] border-white/90 cursor-pointer pointer-events-auto">
                <img 
                  src="https://www.abkgrooming.com/cdn/shop/files/abk_red_logo.png" 
@@ -439,11 +481,11 @@ function HomePage({ mousePos, openCatalog }) {
       </section>
 
       {/* SECTION 4: Value Proposition Grid */}
-      <section className="bg-slate-50 border-t border-slate-100 py-24 px-[3vw] w-full text-left">
+      <section className="bg-slate-50 border-t border-slate-200 py-24 px-[2vw] w-full text-left">
         <div className="w-full">
           <FadeInSection>
             <div className="mb-12">
-              <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight text-slate-900 mb-4">
+              <h2 className="text-[28px] font-bold tracking-tight text-slate-900 mb-4">
                 Empowering <span className="text-[#D84835]">3,000+</span> Pet Retailers
               </h2>
               <p className="text-[14px] text-slate-500 max-w-2xl font-normal leading-relaxed">
@@ -455,7 +497,7 @@ function HomePage({ mousePos, openCatalog }) {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feat, i) => (
               <FadeInSection key={i} delay={i * 100}>
-                <div className="bg-white border border-slate-200 p-8 rounded-[12px] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 h-full flex flex-col group">
+                <div className="bg-white border border-slate-200 p-8 rounded-[12px] shadow-sm hover:shadow-xl transition-shadow duration-300 h-full flex flex-col group">
                   <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-[9px] flex items-center justify-center mb-6 group-hover:bg-[#D84835]/10 group-hover:border-[#D84835]/20 transition-colors">
                     {React.cloneElement(feat.icon, { className: "text-slate-600 group-hover:text-[#D84835] transition-colors w-5 h-5" })}
                   </div>
@@ -468,15 +510,63 @@ function HomePage({ mousePos, openCatalog }) {
         </div>
       </section>
 
-      {/* SECTION 6: B2B Portal Software Mockup */}
-      <section className="py-24 px-[3vw] bg-white overflow-hidden border-b border-slate-100 w-full text-left">
+      {/* SECTION 5: Brand Showcase Marquee */}
+      <section className="py-20 px-[2vw] bg-white border-b border-slate-200 w-full text-left overflow-hidden">
+        <FadeInSection>
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-8">Official National Distributor For Global Leaders</p>
+          <div className="flex flex-wrap gap-8 md:gap-16 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            {brandPartners.slice(0, 6).map((brand, i) => (
+              <h3 key={i} className="text-xl md:text-3xl font-black text-slate-800 tracking-tighter hover:text-[#D84835] transition-colors cursor-pointer">{brand}</h3>
+            ))}
+          </div>
+        </FadeInSection>
+      </section>
+
+      {/* SECTION 6: The ABK Advantage Infographic (Step-by-step) */}
+      <section className="py-24 px-[2vw] bg-slate-900 text-white w-full text-left relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#D84835]/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="w-full relative z-10">
+          <FadeInSection>
+            <div className="mb-16 max-w-3xl">
+              <span className="text-[#D84835] text-[11px] font-bold uppercase tracking-widest block mb-3">Supply Chain Integrity</span>
+              <h2 className="text-[28px] font-bold tracking-tight mb-4">From Global Factories to Your Shelves.</h2>
+              <p className="text-[14px] text-slate-400 font-normal leading-relaxed">
+                We manage an end-to-end, cold-chain compliant logistics network to ensure absolute authenticity and product safety.
+              </p>
+            </div>
+          </FadeInSection>
+
+          <div className="grid md:grid-cols-4 gap-6 relative">
+            <div className="hidden md:block absolute top-6 left-10 right-10 h-[1px] bg-slate-800 z-0"></div>
+            {[
+              { step: "01", title: "Direct Sourcing", desc: "Procured straight from international manufacturing plants. No grey markets." },
+              { step: "02", title: "Customs & AQCS", desc: "Rigorous legal clearance, FSSAI approvals, and animal quarantine checks." },
+              { step: "03", title: "Climate Warehousing", desc: "Stored in our state-of-the-art Pune Trade Centre under strict temperature control." },
+              { step: "04", title: "Rapid Dispatch", desc: "B2B orders shipped to your retail store within 24-48 hours via premium logistics." }
+            ].map((item, i) => (
+              <FadeInSection key={i} delay={i * 150}>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-[9px] bg-slate-800 border border-slate-700 flex items-center justify-center text-[#D84835] font-black text-lg mb-6 shadow-md">
+                    {item.step}
+                  </div>
+                  <h3 className="text-[16px] font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-[13px] text-slate-400 font-normal leading-relaxed">{item.desc}</p>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: B2B Portal Software Mockup */}
+      <section className="py-24 px-[2vw] bg-white overflow-hidden border-b border-slate-200 w-full text-left">
         <div className="w-full flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           <div className="w-full lg:w-[45%]">
             <FadeInSection>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-slate-50 border border-slate-200 text-slate-700 text-[10px] font-bold tracking-widest uppercase mb-6 shadow-sm">
                 <Box size={14} className="text-[#D84835]" /> Proprietary Software
               </div>
-              <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight text-slate-900 mb-5 leading-tight">
+              <h2 className="text-[28px] font-bold tracking-tight text-slate-900 mb-5 leading-tight">
                 Ordering wholesale has never been this seamless.
               </h2>
               <p className="text-[14px] text-slate-500 leading-relaxed mb-8 font-normal">
@@ -494,7 +584,7 @@ function HomePage({ mousePos, openCatalog }) {
           
           <div className="w-full lg:w-[55%]">
             <FadeInSection delay={200}>
-              <div className="relative rounded-[12px] bg-white border border-slate-200 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col">
+              <div className="relative rounded-[12px] bg-white border border-slate-200 shadow-xl overflow-hidden flex flex-col">
                 <div className="w-full h-10 bg-slate-50 border-b border-slate-200 flex items-center px-4 gap-2 shrink-0">
                   <div className="flex gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
@@ -505,23 +595,23 @@ function HomePage({ mousePos, openCatalog }) {
                 </div>
                 <div className="flex flex-1 p-4 gap-4 bg-slate-50/50">
                   <div className="w-1/4 hidden sm:flex flex-col gap-2 border-r border-slate-200 pr-4">
-                    <div className="w-full h-6 bg-slate-200/50 rounded mb-4"></div>
-                    {[1,2,3,4].map(i => <div key={i} className="w-3/4 h-3 bg-slate-200/50 rounded"></div>)}
+                    <div className="w-full h-6 bg-slate-200/50 rounded-[4px] mb-4"></div>
+                    {[1,2,3,4].map(i => <div key={i} className="w-3/4 h-3 bg-slate-200/50 rounded-[4px]"></div>)}
                   </div>
                   <div className="flex-1 space-y-4">
                     <div className="flex justify-between items-center pb-2 border-b border-slate-200">
-                      <div className="w-1/3 h-5 bg-slate-200 rounded"></div>
+                      <div className="w-1/3 h-5 bg-slate-200 rounded-[4px]"></div>
                       <div className="px-3 py-1 bg-[#D84835] text-white rounded-[4px] text-[10px] font-bold">New Order</div>
                     </div>
                     <div className="space-y-3">
                       {[1,2,3].map((i) => (
-                        <div key={i} className="flex items-center gap-4 bg-white p-3 rounded-[8px] border border-slate-200 shadow-sm">
+                        <div key={i} className="flex items-center gap-4 bg-white p-3 rounded-[9px] border border-slate-200 shadow-sm">
                           <div className="w-10 h-10 bg-slate-100 rounded-[6px] shrink-0"></div>
                           <div className="flex-1 space-y-2">
-                            <div className="w-2/3 h-3 bg-slate-200 rounded"></div>
+                            <div className="w-2/3 h-3 bg-slate-200 rounded-[4px]"></div>
                             <div className="flex gap-2">
-                              <div className="w-1/4 h-2 bg-slate-100 rounded"></div>
-                              <div className="w-1/4 h-2 bg-slate-100 rounded"></div>
+                              <div className="w-1/4 h-2 bg-slate-100 rounded-[4px]"></div>
+                              <div className="w-1/4 h-2 bg-slate-100 rounded-[4px]"></div>
                             </div>
                           </div>
                           <div className="w-16 h-8 bg-slate-50 border border-slate-200 rounded-[4px]"></div>
@@ -536,13 +626,40 @@ function HomePage({ mousePos, openCatalog }) {
         </div>
       </section>
 
-      {/* SECTION 7: ROI Margin Calculator */}
-      <section className="py-24 px-[3vw] bg-slate-900 text-white relative overflow-hidden w-full text-left">
+      {/* SECTION 8: Interactive Category Spotlight */}
+      <section className="py-24 px-[2vw] bg-slate-50 w-full text-left border-b border-slate-200">
+        <FadeInSection>
+          <div className="mb-12">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-3">Explore by Category</h2>
+            <p className="text-[14px] text-slate-500 font-normal max-w-2xl">From everyday nutrition to professional grooming setups, our catalogue covers every square foot of your retail space.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Biologically Appropriate Diets", desc: "Orijen, Acana, Wellness CORE", icon: <Star/>, color: "bg-orange-50", text: "text-orange-600" },
+              { title: "Toys & Enrichment", desc: "Kong, Outward Hound, Nerf", icon: <Target/>, color: "bg-blue-50", text: "text-blue-600" },
+              { title: "Professional Grooming", desc: "Hydra, Bio-Groom, TropiClean", icon: <Sparkles/>, color: "bg-pink-50", text: "text-pink-600" }
+            ].map((cat, i) => (
+              <div key={i} className="group bg-white border border-slate-200 rounded-[12px] p-8 hover:border-[#D84835] hover:shadow-lg transition-all cursor-pointer relative overflow-hidden">
+                <div className={`w-12 h-12 ${cat.color} ${cat.text} rounded-[9px] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  {cat.icon}
+                </div>
+                <h3 className="text-[16px] font-bold text-slate-900 mb-2">{cat.title}</h3>
+                <p className="text-[13px] text-slate-500 font-normal mb-8">{cat.desc}</p>
+                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#D84835] to-[#b03929] transform translate-y-full group-hover:translate-y-0 transition-transform"></div>
+                <span className="text-[#D84835] text-[12px] font-bold flex items-center gap-1">View Products <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform"/></span>
+              </div>
+            ))}
+          </div>
+        </FadeInSection>
+      </section>
+
+      {/* SECTION 9: ROI Margin Calculator */}
+      <section className="py-24 px-[2vw] bg-slate-900 text-white relative overflow-hidden w-full text-left">
         <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-red-500/10 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
         
         <div className="w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
           <FadeInSection>
-            <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight mb-5 text-white">Maximize your shelf space ROI.</h2>
+            <h2 className="text-[28px] font-bold tracking-tight mb-5 text-white">Maximize your shelf space ROI.</h2>
             <p className="text-[14px] text-slate-400 leading-relaxed mb-8 font-normal max-w-lg">
               Premium pet food and accessories yield significantly higher margins per square foot compared to standard grocery lines. Upgrade your inventory and see the difference in your monthly P&L.
             </p>
@@ -593,13 +710,95 @@ function HomePage({ mousePos, openCatalog }) {
         </div>
       </section>
 
-      {/* SECTION 8: Recent News & Blogs Snippet */}
-      <section className="py-24 px-[3vw] bg-white border-b border-slate-100 w-full text-left">
+      {/* SECTION 10: Retailer Testimonials */}
+      <section className="py-24 px-[2vw] bg-slate-50 w-full text-left border-b border-slate-200">
+        <FadeInSection>
+          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-[28px] font-bold tracking-tight text-slate-900 mb-3">Retailer Success Stories</h2>
+              <p className="text-[14px] text-slate-500 font-normal">Hear from the store owners who scaled their business with ABK Imports.</p>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { quote: "Switching to ABK for our premium lines like Acana was the best decision. The B2B portal saves me hours every week, and the stock is always reliable.", author: "Rajesh K.", store: "Paws & Claws, Mumbai" },
+              { quote: "The margins on their in-house brands like Chip Chops are incredible. They fly off the shelves and customer retention is at an all-time high.", author: "Priya S.", store: "The Pet Boutique, Bangalore" },
+              { quote: "Their dedicated account managers actually care about our merchandising. They provided free display racks that completely transformed our store layout.", author: "Amit P.", store: "Furry Friends, Delhi" }
+            ].map((test, i) => (
+              <div key={i} className="bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm relative hover:shadow-md transition-shadow">
+                <MessageSquare size={24} className="text-slate-100 absolute top-6 right-6" />
+                <p className="text-[14px] text-slate-700 italic leading-relaxed mb-6">"{test.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-sm border border-slate-200">
+                    {test.author.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="text-[13px] font-bold text-slate-900">{test.author}</h4>
+                    <p className="text-[11px] text-slate-500 font-normal">{test.store}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </FadeInSection>
+      </section>
+
+      {/* SECTION 11: Dedicated Support Highlight */}
+      <section className="py-24 px-[2vw] bg-white w-full text-left border-b border-slate-200">
+        <div className="w-full flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+          <div className="w-full md:w-1/2">
+            <FadeInSection>
+              <div className="w-full aspect-[4/3] bg-slate-100 rounded-[12px] border border-slate-200 overflow-hidden relative shadow-inner">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" alt="Support Team" className="w-full h-full object-cover grayscale opacity-80" />
+                <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur p-4 rounded-[9px] border border-slate-200 shadow-sm flex items-center gap-4">
+                  <div className="w-12 h-12 bg-green-50 rounded-[9px] flex items-center justify-center text-green-600 border border-green-100"><Phone size={20}/></div>
+                  <div>
+                    <h4 className="text-[14px] font-bold text-slate-900">Priority B2B Hotline</h4>
+                    <p className="text-[12px] text-slate-500 font-normal">1800-233-2025 (Mon-Sat)</p>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+          </div>
+          <div className="w-full md:w-1/2">
+            <FadeInSection delay={200}>
+              <h2 className="text-[28px] font-bold tracking-tight text-slate-900 mb-5 leading-tight">
+                Not just an importer. Your strategic growth partner.
+              </h2>
+              <p className="text-[14px] text-slate-500 leading-relaxed mb-6 font-normal">
+                Every registered retailer is assigned a Dedicated Account Manager. We don't just ship boxes; we help you analyze your demographic and pick the fastest-moving SKUs.
+              </p>
+              <p className="text-[14px] text-slate-500 leading-relaxed mb-8 font-normal">
+                Get custom planograms, free marketing assets, and priority resolution on any transit damages. Your success is our bottom line.
+              </p>
+              <button className="slide-bg-primary text-white px-8 py-3.5 rounded-[9px] font-semibold text-[14px] shadow-sm">
+                Speak to Sales
+              </button>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION 12: Detailed Interactive Map */}
+      <section className="py-24 px-[2vw] bg-slate-50 w-full text-left border-b border-slate-200">
+        <FadeInSection>
+          <div className="mb-12">
+             <h2 className="text-[28px] font-bold text-slate-900 mb-3">Our National Footprint</h2>
+             <p className="text-[14px] text-slate-500 font-normal">Explore our Corporate HQ, Central Warehouses, and 100+ Authorized Dealer network across India.</p>
+          </div>
+          <div className="w-full h-[500px] bg-slate-100 rounded-[12px] overflow-hidden border border-slate-200 shadow-sm relative">
+            <LeafletMap />
+          </div>
+        </FadeInSection>
+      </section>
+
+      {/* NEW SECTION 13: Recent News & Blogs Snippet */}
+      <section className="py-24 px-[2vw] bg-white border-b border-slate-200 w-full text-left">
         <div className="w-full">
           <FadeInSection>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
               <div className="max-w-2xl">
-                <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight text-slate-900 mb-3">Retailer Insights</h2>
+                <h2 className="text-[28px] font-bold tracking-tight text-slate-900 mb-3">Retailer Insights</h2>
                 <p className="text-[14px] text-slate-500 font-normal">Market trends, merchandising tips, and global brand announcements.</p>
               </div>
               <button className="text-[13px] font-bold text-[#D84835] flex items-center gap-1 hover:text-[#b03929] transition-colors group">
@@ -632,6 +831,7 @@ function HomePage({ mousePos, openCatalog }) {
           </div>
         </div>
       </section>
+
     </>
   );
 }
@@ -917,7 +1117,6 @@ function ImpactPage() {
         bgImage="https://images.unsplash.com/photo-1528301725143-1ba6948f0e82?auto=format&fit=crop&q=80&w=2000"
       />
 
-      {/* Section 2: Intro */}
       <div className="px-[2vw] pt-24 max-w-4xl">
         <FadeInSection>
           <div className="mb-12">
@@ -925,14 +1124,10 @@ function ImpactPage() {
             <p className="text-[15px] text-slate-600 leading-relaxed font-normal mb-6">
               As India's premier pet importer, we recognize our responsibility to the animals we serve and the planet we share. ABK Imports is dedicated to driving positive change through strategic community partnerships, sustainable logistics, and ethical brand selection.
             </p>
-            <p className="text-[15px] text-slate-600 leading-relaxed font-normal">
-              We believe that true industry leadership isn't just about market share—it's about the positive footprint we leave behind in our communities and the environment.
-            </p>
           </div>
         </FadeInSection>
       </div>
 
-      {/* Section 3: The 3 Pillars */}
       <div className="px-[2vw] pt-12">
         <div className="grid md:grid-cols-3 gap-8">
           <FadeInSection delay={100}>
@@ -971,118 +1166,6 @@ function ImpactPage() {
             </div>
           </FadeInSection>
         </div>
-      </div>
-
-      {/* Section 4: Environmental Deep Dive */}
-      <div className="px-[2vw] pt-32">
-        <FadeInSection>
-          <div className="bg-white rounded-[12px] border border-slate-200 shadow-sm overflow-hidden flex flex-col lg:flex-row">
-            <div className="w-full lg:w-1/2 p-12 md:p-16 flex flex-col justify-center">
-              <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-widest mb-4 block">Environmental Impact</span>
-              <h2 className="text-[28px] font-bold text-slate-900 mb-6">Greening the Supply Chain.</h2>
-              <p className="text-[15px] text-slate-600 leading-relaxed font-normal mb-8">
-                Importing goods on a massive scale comes with an environmental cost. At ABK Imports, we are actively working to offset our carbon footprint through intelligent logistics and infrastructure upgrades.
-              </p>
-              <ul className="space-y-5">
-                <li className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5"><CheckCircle size={16} className="text-emerald-600" /></div>
-                  <div>
-                    <h4 className="font-bold text-[15px] text-slate-900 mb-1">Solar-Powered Warehousing</h4>
-                    <p className="text-[13px] text-slate-500 font-normal">Our central Pune Trade Centre facility generates 40% of its daily operational energy via rooftop solar panels.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5"><CheckCircle size={16} className="text-emerald-600" /></div>
-                  <div>
-                    <h4 className="font-bold text-[15px] text-slate-900 mb-1">Recycled B2B Packaging</h4>
-                    <p className="text-[13px] text-slate-500 font-normal">We have transitioned 100% of our outbound retailer shipments to recycled cardboard and biodegradable tape.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-slate-100 relative">
-              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000" alt="Sustainability" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" />
-            </div>
-          </div>
-        </FadeInSection>
-      </div>
-
-      {/* Section 5: ABK Cares Metrics */}
-      <div className="px-[2vw] pt-32">
-        <FadeInSection>
-          <div className="bg-slate-900 rounded-[12px] p-16 relative overflow-hidden shadow-lg">
-             <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/20 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
-             
-             <div className="relative z-10 mb-12 max-w-2xl">
-                <span className="text-[11px] font-bold text-rose-400 uppercase tracking-widest mb-4 block">Social Impact</span>
-                <h2 className="text-[28px] font-bold text-white mb-4">The ABK Cares Initiative</h2>
-                <p className="text-[15px] text-slate-400 font-normal leading-relaxed">
-                  Every quarter, we divert a percentage of our premium stock—including slightly damaged packaging or short-expiry goods that are perfectly safe and nutritious—directly to verified animal shelters and rescue NGOs across Maharashtra and Karnataka.
-                </p>
-             </div>
-
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 border-t border-slate-800 pt-12">
-               <div>
-                 <h4 className="text-[48px] font-black text-white mb-2 leading-none">5,200<span className="text-rose-500 text-[24px]">kg</span></h4>
-                 <p className="text-[14px] text-slate-400 font-medium">Premium food donated in 2025</p>
-               </div>
-               <div>
-                 <h4 className="text-[48px] font-black text-white mb-2 leading-none">14+</h4>
-                 <p className="text-[14px] text-slate-400 font-medium">Active NGO partnerships</p>
-               </div>
-               <div>
-                 <h4 className="text-[48px] font-black text-white mb-2 leading-none">₹2.4<span className="text-rose-500 text-[24px]">M</span></h4>
-                 <p className="text-[14px] text-slate-400 font-medium">Value of grooming supplies donated</p>
-               </div>
-             </div>
-          </div>
-        </FadeInSection>
-      </div>
-
-      {/* Section 6: Ethical Supply Chain Grid */}
-      <div className="px-[2vw] pt-32">
-        <FadeInSection>
-          <div className="mb-12">
-            <h2 className="text-[28px] font-bold text-slate-900 mb-2">Ethical Brand Selection</h2>
-            <p className="text-[15px] text-slate-500 font-normal max-w-3xl">We don't just import products; we audit the companies behind them. Our procurement team ensures every brand we represent meets strict global ethical standards.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm flex items-start gap-6">
-              <div className="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
-                <PawPrint size={20} className="text-slate-600" />
-              </div>
-              <div>
-                <h4 className="font-bold text-[16px] text-slate-900 mb-2">Cruelty-Free Guarantee</h4>
-                <p className="text-[14px] text-slate-500 font-normal leading-relaxed">We strictly prohibit the import of grooming products or cosmetics that are tested on animals. Brands like TropiClean and Bio-Groom are certified cruelty-free.</p>
-              </div>
-            </div>
-            
-            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm flex items-start gap-6">
-              <div className="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
-                <Target size={20} className="text-slate-600" />
-              </div>
-              <div>
-                <h4 className="font-bold text-[16px] text-slate-900 mb-2">Biologically Appropriate Focus</h4>
-                <p className="text-[14px] text-slate-500 font-normal leading-relaxed">Our flagship nutrition partners, Orijen and Acana, utilize free-run poultry, wild-caught fish, and sustainably farmed ingredients, ensuring ethical agricultural practices.</p>
-              </div>
-            </div>
-          </div>
-        </FadeInSection>
-      </div>
-
-      {/* Section 7: Vision 2030 */}
-      <div className="px-[2vw] pt-32">
-        <FadeInSection>
-          <div className="bg-[#D84835] rounded-[12px] p-16 text-center text-white relative overflow-hidden shadow-lg">
-             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15),transparent_60%)] pointer-events-none"></div>
-             <Globe className="w-12 h-12 mx-auto mb-6 opacity-90" />
-             <h2 className="text-[32px] font-bold mb-4 relative z-10">Vision 2030: A Carbon-Neutral Network</h2>
-             <p className="text-[16px] text-red-100 font-medium mb-0 max-w-3xl mx-auto relative z-10">
-               By 2030, ABK Imports aims to achieve 100% carbon-neutral operations across our primary warehousing hubs and introduce fully biodegradable packaging across all our in-house brands, setting a new environmental standard for the Indian pet industry.
-             </p>
-          </div>
-        </FadeInSection>
       </div>
 
     </div>
@@ -1181,7 +1264,7 @@ function ContactPage() {
       <div className="px-[2vw] pt-24 w-full flex-1">
         <FadeInSection>
           <div className="mb-6">
-             <h2 className="text-[24px] font-bold text-slate-900">Our National Network</h2>
+             <h2 className="text-[24px] font-bold text-slate-900">Our National Footprint</h2>
              <p className="text-[14px] text-slate-500">Live operational map of our HQ, Warehouses, and 100+ authorized dealers.</p>
           </div>
           <div className="w-full h-[600px] bg-slate-100 rounded-[12px] overflow-hidden border border-slate-200 shadow-sm relative">
@@ -1525,11 +1608,11 @@ function QualityPage() {
 
 function NewsPage() {
   const newsItems = [
-    { title: "ABK Imports Secures Exclusive Distribution for New Aquatic Line", date: "May 15, 2026", category: "Partnerships" },
-    { title: "Pune Trade Centre Warehouse Expands Capacity by 40%", date: "April 28, 2026", category: "Operations" },
-    { title: "Announcing the 2026 India Grooming Show Dates", date: "April 10, 2026", category: "Events" },
-    { title: "Orijen & Acana Regional Recipes: Supply Chain Update", date: "March 22, 2026", category: "Supply Chain" },
-    { title: "ABK Retailer Portal 3.0: New Inventory Sync Features", date: "March 05, 2026", category: "Technology" }
+    { title: "ABK Imports Secures Exclusive Distribution for New Aquatic Line", date: "May 15, 2026", category: "Partnerships", excerpt: "Expanding our catalog to include premium freshwater and marine accessories from global leader AquaTech." },
+    { title: "Pune Trade Centre Warehouse Expands Capacity by 40%", date: "April 28, 2026", category: "Operations", excerpt: "Our central hub just got bigger, enabling faster dispatch times and higher stock availability across all zones." },
+    { title: "Announcing the 2026 India Grooming Show Dates", date: "April 10, 2026", category: "Events", excerpt: "The premier event for professional pet groomers returns to Mumbai this November. Early bird registration is open." },
+    { title: "Orijen & Acana Regional Recipes: Supply Chain Update", date: "March 22, 2026", category: "Supply Chain", excerpt: "An update on incoming shipments and FSSAI clearances for the highly anticipated new grain-free recipes." },
+    { title: "ABK Retailer Portal 3.0: New Inventory Sync Features", date: "March 05, 2026", category: "Technology", excerpt: "We've upgraded our B2B software. Retailers can now integrate our live stock API directly into their POS systems." }
   ];
 
   return (
@@ -1546,21 +1629,41 @@ function NewsPage() {
         <FadeInSection>
            <div className="bg-slate-900 rounded-[12px] p-12 flex flex-col lg:flex-row gap-12 items-center shadow-lg">
               <div className="w-full lg:w-1/2">
-                <span className="px-3 py-1 bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest rounded-md mb-6 inline-block">Featured Press Release</span>
+                <span className="px-3 py-1 bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest rounded-[6px] mb-6 inline-block border border-white/20">Featured Press Release</span>
                 <h2 className="text-[28px] md:text-[36px] font-bold text-white leading-tight mb-4">ABK Imports wins 'Distributor of the Year' at the 2026 National Pet Summit.</h2>
                 <p className="text-[15px] text-slate-400 font-normal leading-relaxed mb-8">For the third consecutive year, ABK Imports has been recognized for its flawless supply chain execution and unparalleled retailer support network across India.</p>
-                <button className="slide-bg-primary text-white px-8 py-3.5 rounded-[9px] font-semibold text-[14px] shadow-sm">
+                <button className="slide-bg-primary text-white px-8 py-3.5 rounded-[9px] font-bold text-[14px] shadow-sm">
                   Read Full Press Release
                 </button>
               </div>
               <div className="w-full lg:w-1/2 aspect-video bg-slate-800 rounded-[9px] border border-slate-700 overflow-hidden">
-                 <img src="https://placehold.co/800x450/1e293b/94a3b8?text=Award+Ceremony" className="w-full h-full object-cover grayscale opacity-50" />
+                 <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover grayscale opacity-60 mix-blend-screen hover:grayscale-0 transition-all duration-700" alt="Award Ceremony"/>
               </div>
            </div>
         </FadeInSection>
       </div>
 
-      {/* Section 3: News Feed */}
+      {/* Section 3: Upcoming Events */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+          <div className="mb-10 flex items-center gap-3">
+             <div className="w-10 h-10 rounded-full bg-[#D84835]/10 flex items-center justify-center text-[#D84835]"><Award size={20}/></div>
+             <h3 className="text-[24px] font-bold text-slate-900">Upcoming Events</h3>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-[12px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 hover:border-[#D84835]/30 transition-colors">
+            <div>
+              <span className="text-[11px] font-bold text-[#D84835] uppercase tracking-widest block mb-2">Trade Show • Nov 12-14, 2026</span>
+              <h4 className="text-[20px] font-bold text-slate-900 mb-2">The India Grooming Show 2026</h4>
+              <p className="text-[14px] text-slate-500">Join us in Mumbai for the largest gathering of professional pet groomers. Masterclasses, product launches, and networking.</p>
+            </div>
+            <button className="slide-bg-secondary border border-slate-200 text-slate-900 px-6 py-3 rounded-[9px] font-bold text-[13px] shrink-0 hover:border-slate-300">
+              Register Now
+            </button>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 4: News Feed Grid */}
       <div className="px-[2vw] pt-24 max-w-6xl">
         <FadeInSection>
           <div className="mb-10">
@@ -1571,14 +1674,16 @@ function NewsPage() {
           {newsItems.map((item, i) => (
             <FadeInSection key={i} delay={i * 100}>
               <div className="group flex flex-col md:flex-row md:items-center justify-between p-8 bg-white rounded-[12px] border border-slate-200 hover:border-[#D84835]/40 hover:shadow-md transition-all cursor-pointer">
-                <div>
+                <div className="max-w-3xl">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="px-3 py-1 bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-bold uppercase tracking-widest rounded-[6px]">{item.category}</span>
-                    <span className="text-[12px] font-medium text-slate-400">{item.date}</span>
+                    <span className="text-[12px] font-medium text-slate-400 flex items-center gap-1"><Clock size={12}/> {item.date}</span>
                   </div>
-                  <h3 className="text-[18px] font-bold text-slate-900 group-hover:text-[#D84835] transition-colors">{item.title}</h3>
+                  <h3 className="text-[18px] font-bold text-slate-900 group-hover:text-[#D84835] transition-colors mb-2">{item.title}</h3>
+                  <p className="text-[14px] text-slate-500 leading-relaxed">{item.excerpt}</p>
                 </div>
-                <div className="mt-4 md:mt-0">
+                <div className="mt-4 md:mt-0 shrink-0 flex items-center">
+                  <span className="text-[13px] font-bold text-[#D84835] mr-3 opacity-0 group-hover:opacity-100 transition-opacity">Read Story</span>
                   <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:bg-[#D84835] group-hover:border-[#D84835] group-hover:text-white transition-all text-slate-400">
                     <ArrowRight size={18} />
                   </div>
@@ -1589,14 +1694,32 @@ function NewsPage() {
         </div>
       </div>
 
-      {/* Section 4: PR Contact */}
+      {/* Section 5: Media Assets */}
       <div className="px-[2vw] pt-24">
+        <FadeInSection>
+          <div className="bg-slate-100 border border-slate-200 rounded-[12px] p-12 text-left">
+            <h3 className="text-[24px] font-bold text-slate-900 mb-3">Brand Assets & Media Kit</h3>
+            <p className="text-[14px] text-slate-500 mb-8 max-w-2xl">Download high-resolution ABK logos, brand guidelines, and executive headshots for press and media publications.</p>
+            <div className="flex flex-wrap gap-4">
+              <button className="bg-white border border-slate-200 text-slate-700 px-6 py-3 rounded-[9px] font-bold text-[13px] flex items-center gap-2 hover:border-slate-300 shadow-sm">
+                <FileText size={16}/> Download Brand Guidelines (PDF)
+              </button>
+              <button className="bg-white border border-slate-200 text-slate-700 px-6 py-3 rounded-[9px] font-bold text-[13px] flex items-center gap-2 hover:border-slate-300 shadow-sm">
+                <Package size={16}/> Download Logo Pack (ZIP)
+              </button>
+            </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 6: PR Contact */}
+      <div className="px-[2vw] pt-12">
          <FadeInSection>
             <div className="bg-white border border-slate-200 rounded-[12px] p-12 text-center max-w-3xl mx-auto shadow-sm">
                <Newspaper className="w-10 h-10 mx-auto text-[#D84835] mb-6" />
-               <h3 className="text-[22px] font-bold text-slate-900 mb-3">Media & Press Inquiries</h3>
-               <p className="text-[14px] text-slate-500 font-normal mb-6">For high-resolution brand assets, executive interviews, or official press kit downloads, please contact our PR department.</p>
-               <a href="mailto:pr@abkimports.com" className="text-[#D84835] font-bold text-[14px] hover:underline">pr@abkimports.com</a>
+               <h3 className="text-[22px] font-bold text-slate-900 mb-3">Press Inquiries</h3>
+               <p className="text-[14px] text-slate-500 font-normal mb-6">For interviews or official statements, please contact our PR department.</p>
+               <a href="mailto:pr@abkimports.com" className="text-[#D84835] font-bold text-[14px] hover:underline bg-[#D84835]/10 px-6 py-3 rounded-[9px]">pr@abkimports.com</a>
             </div>
          </FadeInSection>
       </div>
@@ -1606,14 +1729,22 @@ function NewsPage() {
 }
 
 function BlogsPage() {
-  const blogs = [
-    { title: 'The rise of grain-free diets in Indian pet retail', date: 'Oct 12, 2026', readTime: '4 min read', category: 'Market Trends', img: "https://placehold.co/600x400/f8fafc/64748b?text=Grain+Free+Trends" },
-    { title: 'Optimizing shelf space for high-margin accessories', date: 'Oct 05, 2026', readTime: '6 min read', category: 'Merchandising', img: "https://placehold.co/600x400/f8fafc/64748b?text=Shelf+Optimization" },
-    { title: 'Building customer loyalty through premium pet grooming', date: 'Sep 28, 2026', readTime: '5 min read', category: 'Retail Strategy', img: "https://placehold.co/600x400/f8fafc/64748b?text=Grooming+Loyalty" },
-    { title: 'Understanding biologically appropriate nutrition', date: 'Sep 15, 2026', readTime: '7 min read', category: 'Product Education', img: "https://placehold.co/600x400/f8fafc/64748b?text=Nutrition+Education" },
-    { title: 'How to successfully host an in-store pet adoption event', date: 'Sep 02, 2026', readTime: '4 min read', category: 'Community', img: "https://placehold.co/600x400/f8fafc/64748b?text=Adoption+Events" },
-    { title: 'The growing demand for interactive enrichment toys', date: 'Aug 21, 2026', readTime: '5 min read', category: 'Market Trends', img: "https://placehold.co/600x400/f8fafc/64748b?text=Enrichment+Toys" }
+  const [activeFilter, setActiveFilter] = useState('All Articles');
+  
+  const allBlogs = [
+    { title: 'The rise of grain-free diets in Indian pet retail', date: 'Oct 12, 2026', readTime: '4 min read', category: 'Market Trends', img: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=600&q=80" },
+    { title: 'Optimizing shelf space for high-margin accessories', date: 'Oct 05, 2026', readTime: '6 min read', category: 'Merchandising', img: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=600&q=80" },
+    { title: 'Building customer loyalty through premium pet grooming', date: 'Sep 28, 2026', readTime: '5 min read', category: 'Retail Strategy', img: "https://images.unsplash.com/photo-1516734212498-132d08a54e60?auto=format&fit=crop&w=600&q=80" },
+    { title: 'Understanding biologically appropriate nutrition', date: 'Sep 15, 2026', readTime: '7 min read', category: 'Product Education', img: "https://images.unsplash.com/photo-1528301725143-1ba6948f0e82?auto=format&fit=crop&w=600&q=80" },
+    { title: 'How to successfully host an in-store pet adoption event', date: 'Sep 02, 2026', readTime: '4 min read', category: 'Retail Strategy', img: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=600&q=80" },
+    { title: 'The growing demand for interactive enrichment toys', date: 'Aug 21, 2026', readTime: '5 min read', category: 'Market Trends', img: "https://images.unsplash.com/photo-1531685250784-7569952593d2?auto=format&fit=crop&w=600&q=80" }
   ];
+
+  const filteredBlogs = activeFilter === 'All Articles' 
+    ? allBlogs 
+    : allBlogs.filter(blog => blog.category === activeFilter);
+
+  const filters = ['All Articles', 'Market Trends', 'Merchandising', 'Product Education', 'Retail Strategy'];
 
   return (
     <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
@@ -1623,29 +1754,61 @@ function BlogsPage() {
         subtitle="Actionable advice, market trends, and merchandising strategies to help you grow your pet retail business."
         bgImage="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&q=80&w=2000"
       />
+
+      {/* Section 2: Featured Hero Article */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+          <div className="bg-white border border-slate-200 rounded-[12px] p-2 flex flex-col lg:flex-row gap-8 shadow-sm hover:shadow-lg transition-shadow cursor-pointer group">
+            <div className="w-full lg:w-3/5 aspect-video bg-slate-100 rounded-[9px] overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" alt="Featured Article"/>
+              <div className="absolute top-6 left-6 bg-[#D84835] text-white px-4 py-2 rounded-[6px] text-[11px] font-bold uppercase tracking-widest shadow-lg">Featured</div>
+            </div>
+            <div className="w-full lg:w-2/5 p-8 flex flex-col justify-center">
+              <div className="flex items-center gap-2 text-[12px] font-medium text-slate-500 mb-4">
+                <span className="text-[#D84835] font-bold">Expert Guide</span> • <Clock size={14}/> 8 min read
+              </div>
+              <h2 className="text-[28px] md:text-[32px] font-bold text-slate-900 leading-tight mb-4 group-hover:text-[#D84835] transition-colors">The 2026 Blueprint for Pet Retail Layouts.</h2>
+              <p className="text-[15px] text-slate-500 leading-relaxed mb-8">Discover how leading stores are restructuring their aisles to maximize foot traffic, increase dwell time, and skyrocket impulse purchases of high-margin accessories.</p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
+                   <img src="https://placehold.co/100x100/e2e8f0/64748b?text=AP" className="w-full h-full object-cover" alt="Author"/>
+                </div>
+                <div>
+                  <h4 className="text-[14px] font-bold text-slate-900">Ananya Patel</h4>
+                  <p className="text-[12px] text-slate-500">Chief Merchandising Officer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </FadeInSection>
+      </div>
       
-      {/* Section 2: Category Filter (Visual Only) */}
-      <div className="px-[2vw] pt-16">
+      {/* Section 3: Functional Category Filter */}
+      <div className="px-[2vw] pt-20">
          <FadeInSection>
-            <div className="flex flex-wrap gap-3">
-               <button className="px-5 py-2 rounded-full bg-slate-900 text-white text-[13px] font-bold">All Articles</button>
-               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Market Trends</button>
-               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Merchandising</button>
-               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Product Education</button>
-               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Retail Strategy</button>
+            <div className="flex flex-wrap gap-3 border-b border-slate-200 pb-6">
+               {filters.map(filter => (
+                 <button 
+                   key={filter}
+                   onClick={() => setActiveFilter(filter)}
+                   className={`px-6 py-2.5 rounded-[9px] text-[13px] font-bold transition-all ${activeFilter === filter ? 'bg-slate-900 text-white shadow-md' : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'}`}
+                 >
+                   {filter}
+                 </button>
+               ))}
             </div>
          </FadeInSection>
       </div>
 
-      {/* Section 3: Blog Grid */}
-      <div className="px-[2vw] pt-12">
+      {/* Section 4: Blog Grid */}
+      <div className="px-[2vw] pt-12 min-h-[500px]">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog, i) => (
+          {filteredBlogs.map((blog, i) => (
             <FadeInSection key={i} delay={i * 100}>
               <article className="bg-white border border-slate-200 rounded-[12px] overflow-hidden hover:shadow-lg hover:border-slate-300 transition-all duration-300 group cursor-pointer h-full flex flex-col">
                 <div className="w-full aspect-[3/2] bg-slate-100 relative overflow-hidden border-b border-slate-100">
                   <img src={blog.img} alt={blog.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-[6px] border border-slate-200 text-[10px] font-bold text-slate-700 uppercase tracking-widest shadow-sm">
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-[6px] border border-slate-200 text-[10px] font-bold text-slate-700 uppercase tracking-widest shadow-sm">
                     {blog.category}
                   </div>
                 </div>
@@ -1662,19 +1825,36 @@ function BlogsPage() {
             </FadeInSection>
           ))}
         </div>
+        {filteredBlogs.length === 0 && (
+          <div className="w-full py-20 text-center text-slate-500">
+            No articles found in this category.
+          </div>
+        )}
       </div>
 
-      {/* Section 4: Newsletter Box */}
+      {/* Section 5: Industry Experts Highlight */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+           <div className="bg-white border border-slate-200 rounded-[12px] p-12 text-center shadow-sm">
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-[9px] flex items-center justify-center mx-auto mb-6"><BookOpen size={28}/></div>
+              <h3 className="text-[24px] font-bold text-slate-900 mb-4">Written by Retail Experts.</h3>
+              <p className="text-[15px] text-slate-500 max-w-2xl mx-auto leading-relaxed">Our blog isn't outsourced content. It's written by ABK's own category managers, veterinary nutritionists, and regional sales directors who are out in the field every single day.</p>
+           </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 6: Newsletter Box */}
       <div className="px-[2vw] pt-24">
          <FadeInSection>
-            <div className="bg-[#D84835] rounded-[12px] p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-lg">
-               <div className="text-white max-w-lg">
-                 <h2 className="text-[28px] font-bold mb-3">Subscribe to Retailer Insights</h2>
-                 <p className="text-[14px] text-red-100 font-medium">Get the latest market trends, merchandising tips, and brand updates delivered straight to your inbox every month.</p>
+            <div className="bg-[#D84835] rounded-[12px] p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-lg relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[60px] pointer-events-none"></div>
+               <div className="text-white max-w-lg relative z-10">
+                 <h2 className="text-[28px] md:text-[32px] font-bold tracking-tight mb-3">Subscribe to Retailer Insights</h2>
+                 <p className="text-[14px] text-red-100 font-medium leading-relaxed">Get the latest market trends, merchandising tips, and brand updates delivered straight to your inbox every month.</p>
                </div>
-               <div className="w-full md:w-auto flex gap-3">
-                 <input type="email" placeholder="Store email address" className="w-full md:w-64 px-4 py-3.5 rounded-[9px] bg-white border-0 text-slate-900 text-[14px] focus:outline-none focus:ring-2 focus:ring-white/50" />
-                 <button className="bg-slate-900 text-white px-6 py-3.5 rounded-[9px] font-bold text-[14px] hover:bg-slate-800 transition-colors whitespace-nowrap">
+               <div className="w-full md:w-auto flex flex-col sm:flex-row gap-3 relative z-10">
+                 <input type="email" placeholder="Store email address" className="w-full sm:w-72 px-5 py-4 rounded-[9px] bg-white border-0 text-slate-900 text-[14px] focus:outline-none shadow-sm" />
+                 <button className="bg-slate-900 text-white px-8 py-4 rounded-[9px] font-bold text-[14px] hover:bg-slate-800 transition-colors whitespace-nowrap shadow-sm">
                    Subscribe
                  </button>
                </div>
@@ -1690,7 +1870,6 @@ function BlogsPage() {
 // HELPER COMPONENTS
 // ---------------------------
 
-// Reusable Mega Menu Component
 function NavMegaMenu({ title, featuredTitle, featuredDesc, featuredBtn, col1Title, col1Links, col2Title, col2Links, onFeatureClick }) {
   return (
     <div className="group h-full flex items-center">
@@ -1699,9 +1878,9 @@ function NavMegaMenu({ title, featuredTitle, featuredDesc, featuredBtn, col1Titl
       </button>
       
       <div className="absolute top-[100%] left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-[opacity,visibility,transform] duration-300 translate-y-3 group-hover:translate-y-0 w-[860px]">
-        <div className="bg-white rounded-2xl shadow-[0_20px_60px_rgb(0,0,0,0.12)] border border-slate-100 p-2.5 flex gap-2">
+        <div className="bg-white rounded-[16px] shadow-[0_20px_60px_rgb(0,0,0,0.12)] border border-slate-100 p-2.5 flex gap-2">
           
-          <div className="w-[35%] bg-gradient-to-br from-slate-900 via-slate-800 to-[#9a2a1a] rounded-xl p-8 flex flex-col justify-between relative overflow-hidden">
+          <div className="w-[35%] bg-gradient-to-br from-slate-900 via-slate-800 to-[#9a2a1a] rounded-[12px] p-8 flex flex-col justify-between relative overflow-hidden">
             <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#D84835]/35 rounded-full blur-[40px] pointer-events-none"></div>
             
             <div className="relative z-10">
@@ -1712,7 +1891,6 @@ function NavMegaMenu({ title, featuredTitle, featuredDesc, featuredBtn, col1Titl
             </div>
             <button onClick={(e) => {
               if (onFeatureClick) onFeatureClick();
-              // Instantly break the CSS hover state to force the menu to hide
               const dropdownParent = e.currentTarget.closest('.group');
               if (dropdownParent) {
                 dropdownParent.classList.remove('group');
@@ -1746,15 +1924,13 @@ function MegaMenuLink({ icon, title, desc, onClick }) {
     <a href="#" onClick={(e) => { 
       e.preventDefault(); 
       if(onClick) onClick(); 
-      
-      // Instantly break the CSS hover state to force the menu to hide
       const dropdownParent = e.currentTarget.closest('.group');
       if (dropdownParent) {
         dropdownParent.classList.remove('group');
         setTimeout(() => dropdownParent.classList.add('group'), 150);
       }
-    }} aria-label={title} className="flex items-start gap-3 group/link cursor-pointer p-2 -mx-2 rounded-lg hover:bg-slate-50 transition-colors outline-none focus:ring-2 focus:ring-[#D84835]/50">
-      <div className="bg-slate-50 border border-slate-100 text-slate-500 p-2 rounded-lg group-hover/link:border-[#D84835]/20 group-hover/link:bg-[#D84835]/10 group-hover/link:text-[#D84835] transition-colors mt-0.5">
+    }} aria-label={title} className="flex items-start gap-3 group/link cursor-pointer p-2 -mx-2 rounded-[9px] hover:bg-slate-50 transition-colors outline-none focus:ring-2 focus:ring-[#D84835]/50">
+      <div className="bg-slate-50 border border-slate-100 text-slate-500 p-2 rounded-[9px] group-hover/link:border-[#D84835]/20 group-hover/link:bg-[#D84835]/10 group-hover/link:text-[#D84835] transition-colors mt-0.5">
         {icon}
       </div>
       <div>
