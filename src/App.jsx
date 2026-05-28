@@ -149,8 +149,8 @@ export default function App() {
         .animate-scroll-fast { animation: scroll-left 25s linear infinite; }
       `}} />
       
-      {/* 1. Floating Navigation Bar (FROZEN) */}
-      <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-[3vw] pointer-events-none">
+      {/* 1. Floating Navigation Bar */}
+      <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-[2vw] pointer-events-none">
         <nav aria-label="Main Navigation" className="pointer-events-auto relative flex items-center justify-between px-5 py-3 w-full bg-white/95 backdrop-blur-md rounded-[12px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
           <div className="flex items-center gap-2 pl-2">
             <img src="https://www.abkgrooming.com/cdn/shop/files/abk_red_logo.png" alt="ABK Imports - Leading Pet Product Distributor Logo" className="h-[30px] md:h-[35px] object-contain" />
@@ -362,7 +362,7 @@ export default function App() {
       </section>
 
       {/* SECTION 2: Why Partner With ABK (Premium Grid) */}
-      <section className="py-24 px-[3vw] bg-slate-50/50">
+      <section className="py-24 px-[2vw] bg-slate-50/50">
         <div className="w-full max-w-7xl mx-auto">
           <FadeInSection>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -397,7 +397,7 @@ export default function App() {
       </section>
 
       {/* SECTION 3: Step-by-step Process (SaaS Timeline Style) */}
-      <section className="py-24 px-[3vw] bg-slate-900 text-white relative overflow-hidden">
+      <section className="py-24 px-[2vw] bg-slate-900 text-white relative overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#D84835]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
         
@@ -438,7 +438,7 @@ export default function App() {
       </section>
 
       {/* SECTION 4: Browse Categories (Clean, Uniform Cards) */}
-      <section className="py-24 px-[3vw] bg-white border-b border-slate-100">
+      <section className="py-24 px-[2vw] bg-white border-b border-slate-100">
         <div className="w-full max-w-7xl mx-auto">
           <FadeInSection>
             <div className="text-center max-w-2xl mx-auto mb-16">
@@ -464,7 +464,7 @@ export default function App() {
       </section>
 
       {/* SECTION 5: B2B Portal Software Highlight (High-Fidelity Mockup) */}
-      <section className="py-24 px-[3vw] bg-slate-50 overflow-hidden border-b border-slate-200/50">
+      <section className="py-24 px-[2vw] bg-slate-50 overflow-hidden border-b border-slate-200/50">
         <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           <div className="w-full lg:w-[45%]">
             <FadeInSection>
@@ -542,7 +542,7 @@ export default function App() {
       </section>
 
       {/* SECTION 6: Logistics & Warehousing (Clean Data Viz) */}
-      <section className="py-24 px-[3vw] bg-white border-b border-slate-100">
+      <section className="py-24 px-[2vw] bg-white border-b border-slate-100">
         <div className="w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24">
           
           <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4 md:gap-6">
@@ -592,7 +592,7 @@ export default function App() {
       </section>
 
       {/* SECTION 7: Marketing Support (Premium Accent Block) */}
-      <section className="py-24 px-[3vw] relative overflow-hidden bg-[#D84835]">
+      <section className="py-24 px-[2vw] relative overflow-hidden bg-[#D84835]">
         {/* Subtle geometric pattern overlay */}
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
         
@@ -617,7 +617,7 @@ export default function App() {
       </section>
 
       {/* SECTION 8: Testimonials (Clean Review Cards) */}
-      <section className="py-24 px-[3vw] bg-slate-50 border-b border-slate-200/50">
+      <section className="py-24 px-[2vw] bg-slate-50 border-b border-slate-200/50">
         <div className="w-full max-w-7xl mx-auto">
           <FadeInSection>
             <div className="text-center mb-16">
@@ -653,7 +653,7 @@ export default function App() {
       </section>
 
       {/* SECTION 9: ROI Calculator (Visual Only - SaaS Style Widget) */}
-      <section className="py-24 px-[3vw] bg-slate-900 text-white relative overflow-hidden">
+      <section className="py-24 px-[2vw] bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
         
         <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
@@ -716,7 +716,7 @@ export default function App() {
       </section>
 
       {/* SECTION 10: Best Sellers Mini-Showcase */}
-      <section className="py-24 px-[3vw] bg-white border-b border-slate-100">
+      <section className="py-24 px-[2vw] bg-white border-b border-slate-100">
         <div className="w-full max-w-7xl mx-auto">
           <FadeInSection>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -749,7 +749,7 @@ export default function App() {
       </section>
 
       {/* SECTION 11: Awards / Trust Bar */}
-      <section className="py-16 px-[3vw] bg-white border-b border-slate-100">
+      <section className="py-16 px-[2vw] bg-white border-b border-slate-100">
         <div className="w-full max-w-5xl mx-auto flex flex-wrap justify-center gap-10 md:gap-24 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
           <div className="flex items-center gap-3 font-bold text-[15px] text-slate-700"><Award className="text-[#D84835]" /> Best Distributor 2023</div>
           <div className="flex items-center gap-3 font-bold text-[15px] text-slate-700"><Shield className="text-[#D84835]" /> ISO 9001:2015</div>
@@ -758,7 +758,7 @@ export default function App() {
       </section>
 
       {/* SECTION 12: Global Footprint (Dynamic Leaflet Map) */}
-      <section className="py-24 px-[3vw] bg-slate-50 border-b border-slate-200/50">
+      <section className="py-24 px-[2vw] bg-slate-50 border-b border-slate-200/50">
         <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
           <div className="w-full lg:w-[40%]">
             <FadeInSection>
@@ -795,7 +795,7 @@ export default function App() {
       </section>
 
       {/* SECTION 13: Blogs & Insights */}
-      <section className="py-24 px-[3vw] bg-white border-b border-slate-100">
+      <section className="py-24 px-[2vw] bg-white border-b border-slate-100">
         <div className="w-full max-w-7xl mx-auto">
           <FadeInSection>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -838,7 +838,7 @@ export default function App() {
       </section>
 
       {/* SECTION 14: FAQ */}
-      <section className="py-24 px-[3vw] bg-slate-50">
+      <section className="py-24 px-[2vw] bg-slate-50">
         <div className="w-full max-w-3xl mx-auto">
           <FadeInSection>
             <div className="text-center mb-16">
@@ -855,7 +855,7 @@ export default function App() {
       </section>
 
       {/* SECTION 15: Pre-Footer CTA Block */}
-      <section className="py-24 px-[3vw] bg-white">
+      <section className="py-24 px-[2vw] bg-white">
         <div className="w-full max-w-6xl mx-auto">
           <FadeInSection>
             <div className="relative rounded-[32px] overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-2xl border border-slate-700">
@@ -898,7 +898,7 @@ export default function App() {
       </section>
 
       {/* SECTION 16: Detailed Footer */}
-      <footer className="bg-slate-950 text-slate-400 pt-24 pb-12 px-[3vw] border-t border-slate-900">
+      <footer className="bg-slate-950 text-slate-400 pt-24 pb-12 px-[2vw] border-t border-slate-900">
         <div className="w-full max-w-7xl mx-auto">
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
@@ -1110,25 +1110,25 @@ function ScrollerTrack({ CardComponent }) {
 
 function ProductCard({ product }) {
   return (
-    <div className="flex items-center gap-4 bg-white border-2 border-slate-100 rounded-[12px] p-3 min-w-[360px] h-[92px] card-shadow transition-colors duration-300 hover:border-[#D84835]/40 hover:bg-slate-50/50 cursor-pointer">
+    <div className="flex items-center gap-4 bg-white border-2 border-slate-100 rounded-2xl p-3 min-w-[360px] h-[92px] card-shadow transition-transform hover:scale-[1.02] hover:border-[#D84835]/30 cursor-pointer">
       <div className={`w-14 h-14 shrink-0 rounded-xl flex items-center justify-center text-2xl ${product.color} border border-black/5`}>
         {product.icon}
       </div>
       
       <div className="flex-1 overflow-hidden">
-        <h3 className="font-semibold text-slate-800 text-[13px] whitespace-nowrap overflow-hidden text-ellipsis">
+        <h3 className="font-semibold text-slate-800 text-sm whitespace-nowrap overflow-hidden text-ellipsis">
           {product.name}
         </h3>
-        <p className="text-slate-500 text-[11px] mt-1 font-medium">
+        <p className="text-slate-500 text-xs mt-1 font-medium">
           Wholesale <span className="text-slate-700 font-semibold">{product.wholesale}</span>
         </p>
       </div>
 
       <div className="flex flex-col items-end border-l-2 border-slate-100 pl-4 shrink-0">
-        <span className="text-slate-800 font-bold text-[14px] tracking-tight">{product.demand}</span>
+        <span className="text-slate-800 font-bold text-base tracking-tight">{product.demand}</span>
         <div className="flex items-center gap-1 mt-0.5">
           <span className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider">Demand</span>
-          <span className="flex items-center gap-0.5 bg-green-50 text-green-600 text-[10px] font-bold px-1.5 py-0.5 rounded-[4px] border border-green-200">
+          <span className="flex items-center gap-0.5 bg-green-50 text-green-600 text-[10px] font-bold px-1.5 py-0.5 rounded border border-green-200">
             <TrendingUp size={10} strokeWidth={2.5} /> {product.trend}
           </span>
         </div>
@@ -1139,12 +1139,14 @@ function ProductCard({ product }) {
 
 function SkeletonCard() {
   return (
-    <div className="flex items-center gap-4 bg-slate-50/80 border-2 border-slate-100/50 rounded-[12px] p-3 min-w-[360px] h-[92px]">
+    <div className="flex items-center gap-4 bg-slate-50/80 border-2 border-slate-100/50 rounded-2xl p-3 min-w-[360px] h-[92px]">
       <div className="w-14 h-14 shrink-0 rounded-xl bg-slate-200/50 animate-pulse"></div>
+      
       <div className="flex-1 space-y-2.5">
         <div className="h-3.5 bg-slate-200/50 rounded-md w-10/12 animate-pulse"></div>
         <div className="h-3 bg-slate-200/50 rounded-md w-1/2 animate-pulse"></div>
       </div>
+
       <div className="flex flex-col items-end border-l-2 border-slate-100/50 pl-4 shrink-0 space-y-2.5">
         <div className="h-4 bg-slate-200/50 rounded-md w-16 animate-pulse"></div>
         <div className="h-3 bg-slate-200/50 rounded-md w-12 animate-pulse"></div>
