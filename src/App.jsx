@@ -35,7 +35,7 @@ const features = [
   { title: "Dedicated Account Reps", desc: "Get personalized support for order planning, bulk discounts, and merchandising.", icon: <Users /> }
 ];
 
-const CATALOG_URL = "https://5489382d-e5dd-44ec-a4eb-680874f5cf71.usrfiles.com/ugd/548938_976dfb283a734b59b1edf75759e74bee.pdf";
+const CATALOG_URL = "https://abk-brochure.vercel.app/";
 
 export default function App() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
