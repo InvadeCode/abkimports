@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, PawPrint, FileText, TrendingUp, Sparkles, Home, Heart, HandHeart, Wallet, List, MessageSquare, LifeBuoy, AlertTriangle, Box, Briefcase, Users, Package, Award, Target, Newspaper, BookOpen, Settings, Truck, Star, Map as MapIcon, Shield, CheckCircle, ArrowRight, Clock, Building, Phone, Mail, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { ChevronDown, PawPrint, FileText, TrendingUp, Sparkles, Home, Heart, HandHeart, Wallet, List, MessageSquare, LifeBuoy, AlertTriangle, Box, Briefcase, Users, Package, Award, Target, Newspaper, BookOpen, Settings, Truck, Star, Map as MapIcon, Shield, CheckCircle, ArrowRight, Clock, Building, Phone, Mail, Facebook, Instagram, Linkedin, Leaf, Globe, HeartHandshake } from 'lucide-react';
 
 // Pet product data tailored for wholesale/import metrics
 const products = [
@@ -93,7 +93,7 @@ export default function App() {
       >
         {/* --- GLOBAL STYLES & SEO --- */}
         <style dangerouslySetInnerHTML={{__html: `
-          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
           
           @keyframes wipe {
             0% { clip-path: inset(100% 0 0 0); }
@@ -152,7 +152,7 @@ export default function App() {
           })}} />
         </div>
         
-        {/* 1. Floating Navigation Bar (100vw with 3vw padding) */}
+        {/* 1. Floating Navigation Bar */}
         <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-[3vw] pointer-events-none">
           <nav aria-label="Main Navigation" className="pointer-events-auto relative flex items-center justify-between px-5 py-3 w-full bg-white/95 backdrop-blur-md rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
             <button onClick={() => setActivePage('home')} className="flex items-center gap-2 pl-2 focus:outline-none">
@@ -160,7 +160,7 @@ export default function App() {
             </button>
             
             <div className="hidden lg:flex items-center justify-center gap-6 xl:gap-8 text-[13px] font-semibold text-slate-600">
-              
+            
               <NavMegaMenu 
                 title="About Us"
                 featuredTitle={<>Discover<br/>Our Story.</>}
@@ -170,57 +170,20 @@ export default function App() {
                 col1Title="Who We Are"
                 col1Links={[
                   { icon: <Briefcase size={16}/>, title: "Company Profile", desc: "Our mission and vision", onClick: () => setActivePage('about') },
-                  { icon: <Users size={16}/>, title: "Leadership Team", desc: "Meet our directors", onClick: () => setActivePage('about') },
-                  { icon: <Award size={16}/>, title: "Awards & Milestones", desc: "Industry recognition", onClick: () => setActivePage('about') }
+                  { icon: <Users size={16}/>, title: "Leadership Team", desc: "Meet our directors", onClick: () => setActivePage('leadership') },
+                  { icon: <Award size={16}/>, title: "Awards & Milestones", desc: "Industry recognition", onClick: () => setActivePage('awards') },
+                  { icon: <Shield size={16}/>, title: "Quality Assurance", desc: "Our import standards", onClick: () => setActivePage('quality') }
                 ]}
-                col2Title="News & Updates"
+                col2Title="What We Offer"
                 col2Links={[
-                  { icon: <Newspaper size={16}/>, title: "News & Insights", desc: "Latest company news", onClick: () => setActivePage('home') },
-                  { icon: <BookOpen size={16}/>, title: "Blogs", desc: "Pet care and retail tips", onClick: () => setActivePage('home') },
-                  { icon: <Shield size={16}/>, title: "Quality Assurance", desc: "Our import standards", onClick: () => setActivePage('about') }
+                  { icon: <Star size={16}/>, title: "Our Brands", desc: "Explore global & in-house brands", onClick: () => setActivePage('brands') },
+                  { icon: <List size={16}/>, title: "Product Categories", desc: "Browse the full catalog", onClick: () => setActivePage('categories') }
                 ]}
               />
 
-              <NavMegaMenu 
-                title="Our Brands"
-                featuredTitle={<>Global<br/>Market<br/>Leaders.</>}
-                featuredDesc="Exclusively importing the highest quality pet brands into India."
-                featuredBtn="View Brand Catalog"
-                onFeatureClick={() => setActivePage('brands')}
-                col1Title="Premium Nutrition"
-                col1Links={[
-                  { icon: <Star size={16}/>, title: "Orijen", desc: "Biologically appropriate diets", onClick: () => setActivePage('brands') },
-                  { icon: <Target size={16}/>, title: "Acana", desc: "Award-winning recipes", onClick: () => setActivePage('brands') },
-                  { icon: <Heart size={16}/>, title: "Wellness CORE", desc: "Grain-free nutrition", onClick: () => setActivePage('brands') }
-                ]}
-                col2Title="Supplies & Grooming"
-                col2Links={[
-                  { icon: <Home size={16}/>, title: "KONG", desc: "Durable enrichment toys", onClick: () => setActivePage('brands') },
-                  { icon: <Settings size={16}/>, title: "Furminator", desc: "Deshedding solutions", onClick: () => setActivePage('brands') },
-                  { icon: <AlertTriangle size={16}/>, title: "TropiClean", desc: "Natural grooming care", onClick: () => setActivePage('brands') }
-                ]}
-              />
-
-              <NavMegaMenu 
-                title="Categories"
-                featuredTitle={<>Source the<br/>World's Best<br/>Pet Products.</>}
-                featuredDesc="Direct imports, verified quality, and high retail margins."
-                featuredBtn="View All Categories"
-                onFeatureClick={() => setActivePage('categories')}
-                col1Title="Diet & Nutrition"
-                col1Links={[
-                  { icon: <Box size={16}/>, title: "Dog Food", desc: "Dry, wet, and raw diets", onClick: () => setActivePage('categories') },
-                  { icon: <Heart size={16}/>, title: "Cat Food", desc: "Premium feline nutrition", onClick: () => setActivePage('categories') },
-                  { icon: <Wallet size={16}/>, title: "Treats & Chews", desc: "Training and dental rewards", onClick: () => setActivePage('categories') }
-                ]}
-                col2Title="Care & Accessories"
-                col2Links={[
-                  { icon: <HandHeart size={16}/>, title: "Health & Grooming", desc: "Shampoos and supplements", onClick: () => setActivePage('categories') },
-                  { icon: <List size={16}/>, title: "Toys & Enrichment", desc: "Interactive and plush toys", onClick: () => setActivePage('categories') },
-                  { icon: <Truck size={16}/>, title: "Travel & Habitats", desc: "Carriers, beds, and crates", onClick: () => setActivePage('categories') }
-                ]}
-              />
-
+              <button onClick={() => setActivePage('impact')} className="hover:text-[#D84835] transition-colors py-2 focus:outline-none">Our Impact</button>
+              <button onClick={() => setActivePage('news')} className="hover:text-[#D84835] transition-colors py-2 focus:outline-none">News & Insights</button>
+              <button onClick={() => setActivePage('blogs')} className="hover:text-[#D84835] transition-colors py-2 focus:outline-none">Blogs</button>
               <button onClick={() => setActivePage('contact')} className="hover:text-[#D84835] transition-colors py-2 focus:outline-none">Contact</button>
             </div>
             
@@ -236,6 +199,12 @@ export default function App() {
         <div className="flex-1 w-full animate-page-fade-in" key={activePage}>
           {activePage === 'home' && <HomePage mousePos={mousePos} openCatalog={openCatalog} />}
           {activePage === 'about' && <AboutPage openCatalog={openCatalog} />}
+          {activePage === 'leadership' && <LeadershipPage />}
+          {activePage === 'awards' && <AwardsPage />}
+          {activePage === 'quality' && <QualityPage />}
+          {activePage === 'impact' && <ImpactPage />}
+          {activePage === 'news' && <NewsPage />}
+          {activePage === 'blogs' && <BlogsPage />}
           {activePage === 'brands' && <BrandsPage openCatalog={openCatalog} />}
           {activePage === 'categories' && <CategoriesPage openCatalog={openCatalog} />}
           {activePage === 'contact' && <ContactPage />}
@@ -306,9 +275,9 @@ export default function App() {
                 <nav aria-label="Footer Company Links">
                   <ul className="space-y-4 text-[13px] font-medium">
                     <li><button onClick={() => setActivePage('about')} className="hover:text-[#D84835] transition-colors focus:outline-none">About Us</button></li>
-                    <li><button onClick={() => setActivePage('about')} className="hover:text-[#D84835] transition-colors focus:outline-none">Leadership Team</button></li>
+                    <li><button onClick={() => setActivePage('leadership')} className="hover:text-[#D84835] transition-colors focus:outline-none">Leadership Team</button></li>
                     <li><button onClick={() => setActivePage('brands')} className="hover:text-[#D84835] transition-colors focus:outline-none">Our Brands</button></li>
-                    <li><button onClick={() => setActivePage('home')} className="hover:text-[#D84835] transition-colors focus:outline-none">News & Insights</button></li>
+                    <li><button onClick={() => setActivePage('news')} className="hover:text-[#D84835] transition-colors focus:outline-none">News & Insights</button></li>
                     <li><button onClick={() => setActivePage('contact')} className="hover:text-[#D84835] transition-colors focus:outline-none">Careers</button></li>
                   </ul>
                 </nav>
@@ -341,15 +310,7 @@ export default function App() {
                       Pune, Maharashtra 411036
                     </span>
                   </li>
-                  <li className="flex gap-4 items-start border-t border-slate-800/50 pt-4">
-                    <Package className="shrink-0 w-5 h-5 text-slate-500 mt-0.5" aria-hidden="true" /> 
-                    <span className="leading-relaxed font-normal text-left">
-                      <strong className="text-slate-200 block mb-1.5 font-bold">Main Warehouse</strong>
-                      Office 105, 1st Flr, Pune Trade Centre,<br/>
-                      Gat No. 2337/1, Nagar Rd, Wagholi,<br/>
-                      Pune, Maharashtra 412207
-                    </span>
-                  </li>
+                  
                   <li className="flex gap-4 items-center pt-2 border-t border-slate-800/50">
                     <Phone className="shrink-0 w-5 h-5 text-slate-500" aria-hidden="true" /> 
                     <a href="tel:+9118002332025" className="hover:text-white transition-colors font-bold text-slate-300">1800-233-2025 <span className="text-slate-500 text-[11px] font-normal ml-1">(Toll Free)</span></a>
@@ -674,14 +635,24 @@ function HomePage({ mousePos, openCatalog }) {
 // INNER PAGES COMPONENTS
 // ---------------------------
 
-// Reusable Hero for Inner Pages
-function InnerPageHero({ title, subtitle }) {
+// Reusable Upgraded Hero for Inner Pages
+function InnerPageHero({ title, subtitle, bgImage }) {
   return (
-    <div className="w-full pt-40 pb-16 px-[3vw] bg-slate-900 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D84835]/20 blur-[100px] rounded-full pointer-events-none"></div>
-      <div className="relative z-10 max-w-4xl text-left">
-        <h1 className="text-[36px] md:text-[46px] font-bold text-white mb-4 tracking-tight leading-tight">{title}</h1>
-        <p className="text-slate-400 text-[14px] md:text-[16px] font-normal leading-relaxed">{subtitle}</p>
+    <div className="w-full pt-52 pb-32 md:pt-64 md:pb-40 px-[2vw] relative overflow-hidden bg-slate-900">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+         <img src={bgImage} alt={title} className="w-full h-full object-cover opacity-50" />
+      </div>
+      
+      {/* Gradient Overlays */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#D84835]/30 blur-[140px] rounded-full pointer-events-none z-0"></div>
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl text-left pl-[1vw]">
+        <div className="w-16 h-1 bg-[#D84835] mb-8 rounded-full"></div>
+        <h1 className="text-[40px] md:text-[56px] font-extrabold text-white mb-6 tracking-tight leading-[1.1] drop-shadow-lg">{title}</h1>
+        <p className="text-slate-300 text-[16px] md:text-[18px] font-normal leading-relaxed max-w-2xl drop-shadow-md">{subtitle}</p>
       </div>
     </div>
   );
@@ -693,63 +664,101 @@ function AboutPage({ openCatalog }) {
       <InnerPageHero 
         title="Driven by Love. Defined by Quality." 
         subtitle="At the heart of India's booming pet industry is something simple: people love their pets more deeply than ever before."
+        bgImage="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=2000"
       />
       
-      <div className="px-[3vw] pt-20">
+      {/* Section 2: Intro */}
+      <div className="px-[2vw] pt-24">
         <FadeInSection>
-          <div className="max-w-4xl mb-16">
-            <p className="text-[15px] text-slate-600 leading-relaxed font-normal">
+          <div className="max-w-4xl mb-12">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-6">Our Mission & Vision</h2>
+            <p className="text-[15px] text-slate-600 leading-relaxed font-normal mb-6">
               From products on retail shelves to the professionals in grooming salons and vet clinics, we craft and curate to foster love for pets. We identify and partner with leading international pet brands, curate products suited for the Indian market, and distribute them across a growing network.
+            </p>
+            <p className="text-[15px] text-slate-600 leading-relaxed font-normal">
+              Our vision is to elevate the standard of pet care in India by ensuring that every pet parent has access to the world's most biologically appropriate, safe, and innovative products through their trusted local retailers.
             </p>
           </div>
         </FadeInSection>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-24">
+        {/* Section 3: Pillars */}
+        <div className="grid md:grid-cols-3 gap-8 mt-16">
           <FadeInSection delay={100}>
-            <div className="bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm h-full">
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-[9px] flex items-center justify-center mb-6">
                 <Package className="text-slate-600 w-5 h-5" />
               </div>
-              <h3 className="text-[16px] font-bold text-slate-900 mb-3">A Chain of Conviction</h3>
-              <p className="text-[13px] text-slate-500 leading-relaxed font-normal">
+              <h3 className="text-[18px] font-bold text-slate-900 mb-3">A Chain of Conviction</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
                 Every piece in this catalogue passed through many hands before it reached yours. Each product that arrives at your doorstep is rigorously tested with our expert stamp of approval.
               </p>
             </div>
           </FadeInSection>
           <FadeInSection delay={200}>
-            <div className="bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm h-full">
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-[9px] flex items-center justify-center mb-6">
                 <Users className="text-slate-600 w-5 h-5" />
               </div>
-              <h3 className="text-[16px] font-bold text-slate-900 mb-3">The Last Mile of Care</h3>
-              <p className="text-[13px] text-slate-500 leading-relaxed font-normal">
+              <h3 className="text-[18px] font-bold text-slate-900 mb-3">The Last Mile of Care</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
                 Our retailers and distributors are the final, essential act of care. Every shelf where an ABK product is displayed is an extension of the belief we first built.
               </p>
             </div>
           </FadeInSection>
           <FadeInSection delay={300}>
-            <div className="bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm h-full">
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-[9px] flex items-center justify-center mb-6">
                 <Award className="text-slate-600 w-5 h-5" />
               </div>
-              <h3 className="text-[16px] font-bold text-slate-900 mb-3">India Grooming Show</h3>
-              <p className="text-[13px] text-slate-500 leading-relaxed font-normal">
+              <h3 className="text-[18px] font-bold text-slate-900 mb-3">India Grooming Show</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
                 Our commitment to the professionals who give meaning to everything we import. A stage for groomers to grow, connect, and be celebrated.
               </p>
             </div>
           </FadeInSection>
         </div>
+      </div>
 
+      {/* Section 4: By The Numbers */}
+      <div className="px-[2vw] pt-24">
         <FadeInSection>
-          <div className="bg-white rounded-[12px] border border-slate-200 shadow-sm p-12 relative overflow-hidden">
-            <div className="relative z-10 max-w-2xl">
-              <h2 className="text-[24px] font-bold text-slate-900 mb-4">A Room Full of Reasons.</h2>
-              <p className="text-[14px] text-slate-500 leading-relaxed mb-8 font-normal">
-                We do not just sell what we import. We experience it. At ABK, our relationship with every product begins long before it reaches a shelf. Come visit our ABK Experience Center in Pune.
+          <div className="bg-slate-900 rounded-[12px] p-16 grid grid-cols-2 md:grid-cols-4 gap-8 relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-[#D84835]/20 rounded-full blur-[60px] pointer-events-none"></div>
+             <div>
+               <h4 className="text-[40px] font-black text-white mb-2">15+</h4>
+               <p className="text-[13px] text-slate-400 font-medium uppercase tracking-widest">Years of Trust</p>
+             </div>
+             <div>
+               <h4 className="text-[40px] font-black text-white mb-2">3000+</h4>
+               <p className="text-[13px] text-slate-400 font-medium uppercase tracking-widest">Active Retailers</p>
+             </div>
+             <div>
+               <h4 className="text-[40px] font-black text-white mb-2">100+</h4>
+               <p className="text-[13px] text-slate-400 font-medium uppercase tracking-widest">Global Brands</p>
+             </div>
+             <div>
+               <h4 className="text-[40px] font-black text-white mb-2">24/7</h4>
+               <p className="text-[13px] text-slate-400 font-medium uppercase tracking-widest">Partner Support</p>
+             </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 5: Experience Center */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+          <div className="bg-white rounded-[12px] border border-slate-200 shadow-sm p-16 relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
+            <div className="relative z-10 flex-1">
+              <h2 className="text-[28px] font-bold text-slate-900 mb-4">A Room Full of Reasons.</h2>
+              <p className="text-[15px] text-slate-500 leading-relaxed mb-8 font-normal">
+                We do not just sell what we import. We experience it. At ABK, our relationship with every product begins long before it reaches a shelf. Come visit our state-of-the-art ABK Experience Center in Pune to interact with our catalogue firsthand.
               </p>
-              <button onClick={openCatalog} className="slide-bg-primary text-white px-6 py-3 rounded-[9px] font-bold text-[13px] shadow-sm">
+              <button onClick={openCatalog} className="slide-bg-primary text-white px-8 py-3.5 rounded-[9px] font-semibold text-[14px] shadow-sm">
                 Download Full 2026-27 Catalogue
               </button>
+            </div>
+            <div className="w-full md:w-[40%] aspect-video bg-slate-100 rounded-[12px] border border-slate-200 flex items-center justify-center relative overflow-hidden">
+               <img src="https://placehold.co/800x600/f8fafc/64748b?text=ABK+Experience+Center" alt="Experience Center" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
             </div>
           </div>
         </FadeInSection>
@@ -782,35 +791,57 @@ function BrandsPage({ openCatalog }) {
   ];
 
   return (
-    <div className="w-full pb-24 text-left min-h-screen bg-white">
+    <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
       <InnerPageHero 
         title="Curating the Greats, Creating the Best." 
         subtitle="We partner with leading international pet brands and develop high-margin, high-quality in-house lines."
+        bgImage="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=2000"
       />
       
-      <div className="px-[3vw] pt-20">
+      {/* Section 2: Download CTA */}
+      <div className="px-[2vw] pt-20 border-b border-slate-200 pb-16">
         <FadeInSection>
-          <div className="mb-20">
-            <h2 className="text-[20px] font-bold text-slate-900 mb-6 border-b border-slate-100 pb-3">Global Brands We Bring To India</h2>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm">
+            <div>
+              <h2 className="text-[20px] font-bold text-slate-900 mb-2">The Complete Master Catalogue</h2>
+              <p className="text-[14px] text-slate-500 font-normal">Explore 5,000+ SKUs across all our global and in-house brands.</p>
+            </div>
+            <button onClick={openCatalog} className="slide-bg-primary px-8 py-3.5 rounded-[9px] font-semibold text-[14px] text-white shadow-sm flex items-center gap-2 shrink-0">
+              <FileText size={18} /> Download Full PDF
+            </button>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 3: Global Brands */}
+      <div className="px-[2vw] pt-16">
+        <FadeInSection>
+          <div className="mb-8">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-3">Global Brands We Bring To India</h2>
+            <p className="text-[15px] text-slate-500 font-normal mb-8 max-w-3xl">Exclusive national distribution rights for the world's most trusted manufacturers. Rigorous customs clearance and 100% authenticity guaranteed.</p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {international.map((brand, i) => (
-                <div key={i} className="bg-slate-50 p-6 rounded-[9px] border border-slate-200 flex flex-col items-start justify-center hover:border-slate-300 transition-colors">
+                <div key={i} className="bg-white p-6 rounded-[12px] border border-slate-200 shadow-sm flex flex-col items-start justify-center hover:border-slate-300 hover:shadow-md transition-all">
                   <span className="font-bold text-[16px] text-slate-800 mb-1">{brand.name}</span>
-                  <span className="text-[11px] text-slate-500 font-normal">{brand.desc}</span>
+                  <span className="text-[12px] text-slate-500 font-normal leading-snug">{brand.desc}</span>
                 </div>
               ))}
             </div>
           </div>
         </FadeInSection>
+      </div>
 
+      {/* Section 4: In-House Brands */}
+      <div className="px-[2vw] pt-24">
         <FadeInSection delay={100}>
           <div>
-            <h2 className="text-[20px] font-bold text-slate-900 mb-6 border-b border-slate-100 pb-3">Brands We've Built</h2>
+            <h2 className="text-[28px] font-bold text-slate-900 mb-3">Brands We've Built</h2>
+            <p className="text-[15px] text-slate-500 font-normal mb-8 max-w-3xl">Leveraging over a decade of consumer insights to create high-margin, high-velocity products that dominate retail shelves.</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {inHouse.map((brand, i) => (
-                <div key={i} className="bg-white p-6 rounded-[9px] border border-slate-200 shadow-sm flex flex-col items-start hover:border-[#D84835]/30 transition-colors">
-                  <span className="font-bold text-[16px] text-[#D84835] mb-1">{brand.name}</span>
-                  <span className="text-[11px] text-slate-500 font-normal">{brand.desc}</span>
+                <div key={i} className="bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm flex flex-col items-start hover:border-[#D84835]/30 hover:shadow-md transition-all group">
+                  <span className="font-bold text-[18px] text-[#D84835] mb-2 group-hover:text-[#b03929] transition-colors">{brand.name}</span>
+                  <span className="text-[13px] text-slate-500 font-normal leading-relaxed">{brand.desc}</span>
                 </div>
               ))}
             </div>
@@ -835,44 +866,320 @@ function CategoriesPage({ openCatalog }) {
     <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
       <InnerPageHero 
         title="Products That Cater to Every Need." 
-        subtitle="From puppies and kittens to senior pets, our 2026-27 catalogue covers daily nutrition, play, grooming, and life essentials."
+        subtitle="From puppies and kittens to senior pets, our catalogue covers daily nutrition, play, grooming, and life essentials."
+        bgImage="https://images.unsplash.com/photo-1516734212498-132d08a54e60?auto=format&fit=crop&q=80&w=2000"
       />
       
-      <div className="px-[3vw] pt-20">
-        <FadeInSection>
-          <div className="mb-12">
-            <button onClick={openCatalog} className="slide-bg-primary px-6 py-3 rounded-[9px] font-bold text-[13px] text-white shadow-sm flex items-center gap-2 w-fit">
-              <FileText size={16} /> Download Full PDF Catalogue
-            </button>
-          </div>
-        </FadeInSection>
-
+      {/* Section 2: Categories Grid */}
+      <div className="px-[2vw] pt-24">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sections.map((sec, i) => (
             <FadeInSection key={i} delay={i * 100}>
-              <div className="bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-[16px] font-bold text-slate-900 mb-3">{sec.title}</h3>
-                <p className="text-[13px] text-slate-500 leading-relaxed font-normal">{sec.desc}</p>
+              <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm hover:shadow-md transition-shadow group h-full cursor-pointer flex flex-col">
+                <h3 className="text-[18px] font-bold text-slate-900 mb-3 group-hover:text-[#D84835] transition-colors">{sec.title}</h3>
+                <p className="text-[14px] text-slate-500 leading-relaxed font-normal flex-1">{sec.desc}</p>
+                <span className="text-[12px] font-bold text-[#D84835] uppercase tracking-widest mt-6 flex items-center gap-1 group-hover:gap-2 transition-all">Explore <ChevronDown size={14} className="-rotate-90"/></span>
               </div>
             </FadeInSection>
           ))}
         </div>
       </div>
+
+      {/* Section 3: Merchandising Support */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+           <div className="bg-slate-900 rounded-[12px] p-16 text-white text-center max-w-4xl mx-auto">
+             <h2 className="text-[28px] font-bold mb-4">Retail Merchandising Support</h2>
+             <p className="text-[15px] text-slate-400 font-normal leading-relaxed mb-8">
+               Need help deciding what to stock? Our dedicated account managers will help you select the fastest-moving SKUs for your specific store size and customer demographic. We provide custom planograms, shelf-talkers, and display racks for partner retailers.
+             </p>
+             <button onClick={openCatalog} className="slide-bg-primary px-8 py-3.5 rounded-[9px] font-semibold text-[14px] text-white shadow-sm inline-flex items-center gap-2">
+                <FileText size={18} /> Download 2026-27 Catalogue
+             </button>
+           </div>
+        </FadeInSection>
+      </div>
     </div>
   );
 }
 
+function ImpactPage() {
+  return (
+    <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
+      <InnerPageHero 
+        title="Beyond Business. Leaving a Pawprint of Care." 
+        subtitle="Our commitment to sustainability, ethical sourcing, and community welfare goes beyond just delivering pet products."
+        bgImage="https://images.unsplash.com/photo-1528301725143-1ba6948f0e82?auto=format&fit=crop&q=80&w=2000"
+      />
+
+      {/* Section 2: Intro */}
+      <div className="px-[2vw] pt-24 max-w-4xl">
+        <FadeInSection>
+          <div className="mb-12">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-6">Our Corporate Responsibility</h2>
+            <p className="text-[15px] text-slate-600 leading-relaxed font-normal mb-6">
+              As India's premier pet importer, we recognize our responsibility to the animals we serve and the planet we share. ABK Imports is dedicated to driving positive change through strategic community partnerships, sustainable logistics, and ethical brand selection.
+            </p>
+            <p className="text-[15px] text-slate-600 leading-relaxed font-normal">
+              We believe that true industry leadership isn't just about market share—it's about the positive footprint we leave behind in our communities and the environment.
+            </p>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 3: The 3 Pillars */}
+      <div className="px-[2vw] pt-12">
+        <div className="grid md:grid-cols-3 gap-8">
+          <FadeInSection delay={100}>
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-emerald-50 border border-emerald-100 rounded-[9px] flex items-center justify-center mb-6">
+                <Leaf className="text-emerald-600 w-7 h-7" />
+              </div>
+              <h3 className="text-[18px] font-bold text-slate-900 mb-4">Sustainable Logistics</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
+                We've reduced our warehouse carbon footprint by 30% through solar integration and eliminated single-use plastics in our B2B dispatch packaging.
+              </p>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={200}>
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-sky-50 border border-sky-100 rounded-[9px] flex items-center justify-center mb-6">
+                <Globe className="text-sky-600 w-7 h-7" />
+              </div>
+              <h3 className="text-[18px] font-bold text-slate-900 mb-4">Ethical Sourcing</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
+                We exclusively partner with global manufacturers who adhere to cruelty-free testing and use sustainably farmed, biologically appropriate ingredients.
+              </p>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={300}>
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-rose-50 border border-rose-100 rounded-[9px] flex items-center justify-center mb-6">
+                <HeartHandshake className="text-rose-600 w-7 h-7" />
+              </div>
+              <h3 className="text-[18px] font-bold text-slate-900 mb-4">Community Welfare</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
+                Through our 'ABK Cares' initiative, we donate over 5,000 kgs of premium pet food annually to verified animal shelters and rescue operations across India.
+              </p>
+            </div>
+          </FadeInSection>
+        </div>
+      </div>
+
+      {/* Section 4: Environmental Deep Dive */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="bg-white rounded-[12px] border border-slate-200 shadow-sm overflow-hidden flex flex-col lg:flex-row">
+            <div className="w-full lg:w-1/2 p-12 md:p-16 flex flex-col justify-center">
+              <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-widest mb-4 block">Environmental Impact</span>
+              <h2 className="text-[28px] font-bold text-slate-900 mb-6">Greening the Supply Chain.</h2>
+              <p className="text-[15px] text-slate-600 leading-relaxed font-normal mb-8">
+                Importing goods on a massive scale comes with an environmental cost. At ABK Imports, we are actively working to offset our carbon footprint through intelligent logistics and infrastructure upgrades.
+              </p>
+              <ul className="space-y-5">
+                <li className="flex items-start gap-4">
+                  <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5"><CheckCircle size={16} className="text-emerald-600" /></div>
+                  <div>
+                    <h4 className="font-bold text-[15px] text-slate-900 mb-1">Solar-Powered Warehousing</h4>
+                    <p className="text-[13px] text-slate-500 font-normal">Our central Pune Trade Centre facility generates 40% of its daily operational energy via rooftop solar panels.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5"><CheckCircle size={16} className="text-emerald-600" /></div>
+                  <div>
+                    <h4 className="font-bold text-[15px] text-slate-900 mb-1">Recycled B2B Packaging</h4>
+                    <p className="text-[13px] text-slate-500 font-normal">We have transitioned 100% of our outbound retailer shipments to recycled cardboard and biodegradable tape.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-slate-100 relative">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000" alt="Sustainability" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" />
+            </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 5: ABK Cares Metrics */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="bg-slate-900 rounded-[12px] p-16 relative overflow-hidden shadow-lg">
+             <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/20 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+             
+             <div className="relative z-10 mb-12 max-w-2xl">
+                <span className="text-[11px] font-bold text-rose-400 uppercase tracking-widest mb-4 block">Social Impact</span>
+                <h2 className="text-[28px] font-bold text-white mb-4">The ABK Cares Initiative</h2>
+                <p className="text-[15px] text-slate-400 font-normal leading-relaxed">
+                  Every quarter, we divert a percentage of our premium stock—including slightly damaged packaging or short-expiry goods that are perfectly safe and nutritious—directly to verified animal shelters and rescue NGOs across Maharashtra and Karnataka.
+                </p>
+             </div>
+
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 border-t border-slate-800 pt-12">
+               <div>
+                 <h4 className="text-[48px] font-black text-white mb-2 leading-none">5,200<span className="text-rose-500 text-[24px]">kg</span></h4>
+                 <p className="text-[14px] text-slate-400 font-medium">Premium food donated in 2025</p>
+               </div>
+               <div>
+                 <h4 className="text-[48px] font-black text-white mb-2 leading-none">14+</h4>
+                 <p className="text-[14px] text-slate-400 font-medium">Active NGO partnerships</p>
+               </div>
+               <div>
+                 <h4 className="text-[48px] font-black text-white mb-2 leading-none">₹2.4<span className="text-rose-500 text-[24px]">M</span></h4>
+                 <p className="text-[14px] text-slate-400 font-medium">Value of grooming supplies donated</p>
+               </div>
+             </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 6: Ethical Supply Chain Grid */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="mb-12">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-2">Ethical Brand Selection</h2>
+            <p className="text-[15px] text-slate-500 font-normal max-w-3xl">We don't just import products; we audit the companies behind them. Our procurement team ensures every brand we represent meets strict global ethical standards.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm flex items-start gap-6">
+              <div className="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                <PawPrint size={20} className="text-slate-600" />
+              </div>
+              <div>
+                <h4 className="font-bold text-[16px] text-slate-900 mb-2">Cruelty-Free Guarantee</h4>
+                <p className="text-[14px] text-slate-500 font-normal leading-relaxed">We strictly prohibit the import of grooming products or cosmetics that are tested on animals. Brands like TropiClean and Bio-Groom are certified cruelty-free.</p>
+              </div>
+            </div>
+            
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm flex items-start gap-6">
+              <div className="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                <Target size={20} className="text-slate-600" />
+              </div>
+              <div>
+                <h4 className="font-bold text-[16px] text-slate-900 mb-2">Biologically Appropriate Focus</h4>
+                <p className="text-[14px] text-slate-500 font-normal leading-relaxed">Our flagship nutrition partners, Orijen and Acana, utilize free-run poultry, wild-caught fish, and sustainably farmed ingredients, ensuring ethical agricultural practices.</p>
+              </div>
+            </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 7: Vision 2030 */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="bg-[#D84835] rounded-[12px] p-16 text-center text-white relative overflow-hidden shadow-lg">
+             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15),transparent_60%)] pointer-events-none"></div>
+             <Globe className="w-12 h-12 mx-auto mb-6 opacity-90" />
+             <h2 className="text-[32px] font-bold mb-4 relative z-10">Vision 2030: A Carbon-Neutral Network</h2>
+             <p className="text-[16px] text-red-100 font-medium mb-0 max-w-3xl mx-auto relative z-10">
+               By 2030, ABK Imports aims to achieve 100% carbon-neutral operations across our primary warehousing hubs and introduce fully biodegradable packaging across all our in-house brands, setting a new environmental standard for the Indian pet industry.
+             </p>
+          </div>
+        </FadeInSection>
+      </div>
+
+    </div>
+  )
+}
+
 function ContactPage() {
   return (
-    <div className="w-full pb-24 text-left min-h-screen bg-white flex flex-col">
+    <div className="w-full pb-24 text-left min-h-screen bg-slate-50 flex flex-col">
       <InnerPageHero 
         title="Where Every Link Matters." 
-        subtitle="We operate across India with a massive network of distributors, super-stockists, and authorized retailers."
+        subtitle="We operate across India with a massive network of distributors, super-stockists, and authorized retailers. Reach out to us today."
+        bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
       />
       
-      <div className="px-[3vw] pt-20 w-full flex-1">
+      {/* Section 2: Contact Details Grid */}
+      <div className="px-[2vw] pt-24">
+        <div className="grid md:grid-cols-3 gap-6">
+           <FadeInSection delay={100}>
+              <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full">
+                <MessageSquare className="w-8 h-8 text-[#D84835] mb-6" />
+                <h3 className="text-[18px] font-bold text-slate-900 mb-2">Retailer Support</h3>
+                <p className="text-[14px] text-slate-500 mb-6 font-normal">Need help with an order, portal access, or damaged stock? Our team is here.</p>
+                <a href="mailto:support@abkimports.com" className="text-[#D84835] font-bold text-[14px]">support@abkimports.com</a>
+              </div>
+           </FadeInSection>
+           <FadeInSection delay={200}>
+              <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full">
+                <Briefcase className="w-8 h-8 text-[#D84835] mb-6" />
+                <h3 className="text-[18px] font-bold text-slate-900 mb-2">Sales & Partnerships</h3>
+                <p className="text-[14px] text-slate-500 mb-6 font-normal">Looking to stock our brands or become a regional super-stockist?</p>
+                <a href="mailto:sales@abkimports.com" className="text-[#D84835] font-bold text-[14px]">sales@abkimports.com</a>
+              </div>
+           </FadeInSection>
+           <FadeInSection delay={300}>
+              <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full">
+                <MapIcon className="w-8 h-8 text-[#D84835] mb-6" />
+                <h3 className="text-[18px] font-bold text-slate-900 mb-2">Corporate HQ</h3>
+                <p className="text-[14px] text-slate-500 mb-6 font-normal">Verdant 84, Office No. 402, N Main Rd, Koregaon Park East, Pune 411036</p>
+                <a href="tel:18002332025" className="text-[#D84835] font-bold text-[14px]">1800-233-2025</a>
+              </div>
+           </FadeInSection>
+        </div>
+      </div>
+
+      {/* Section 3: Partner Inquiry Form (UI) */}
+      <div className="px-[2vw] pt-24">
         <FadeInSection>
-          <div className="w-full h-[600px] bg-slate-50 rounded-[12px] overflow-hidden border border-slate-200 shadow-sm relative">
+          <div className="bg-white rounded-[12px] border border-slate-200 shadow-sm p-12 md:p-16 max-w-4xl mx-auto">
+             <div className="text-center mb-10">
+               <h2 className="text-[28px] font-bold text-slate-900 mb-4">Partner Inquiry Form</h2>
+               <p className="text-[15px] text-slate-500 font-normal">Fill out the details below and a regional sales manager will contact you within 24 hours.</p>
+             </div>
+             <form className="space-y-6" onSubmit={e => e.preventDefault()}>
+               <div className="grid md:grid-cols-2 gap-6">
+                 <div className="flex flex-col gap-2">
+                   <label className="text-[13px] font-bold text-slate-700">Business Name</label>
+                   <input type="text" className="px-4 py-3 rounded-[9px] bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#D84835] transition-colors" placeholder="e.g. Pawfect Pets" />
+                 </div>
+                 <div className="flex flex-col gap-2">
+                   <label className="text-[13px] font-bold text-slate-700">Contact Person</label>
+                   <input type="text" className="px-4 py-3 rounded-[9px] bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#D84835] transition-colors" placeholder="Full Name" />
+                 </div>
+               </div>
+               <div className="grid md:grid-cols-2 gap-6">
+                 <div className="flex flex-col gap-2">
+                   <label className="text-[13px] font-bold text-slate-700">Email Address</label>
+                   <input type="email" className="px-4 py-3 rounded-[9px] bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#D84835] transition-colors" placeholder="name@business.com" />
+                 </div>
+                 <div className="flex flex-col gap-2">
+                   <label className="text-[13px] font-bold text-slate-700">Phone Number</label>
+                   <input type="tel" className="px-4 py-3 rounded-[9px] bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#D84835] transition-colors" placeholder="+91..." />
+                 </div>
+               </div>
+               <div className="flex flex-col gap-2">
+                 <label className="text-[13px] font-bold text-slate-700">Inquiry Type</label>
+                 <select className="px-4 py-3 rounded-[9px] bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#D84835] transition-colors text-slate-700">
+                    <option>I want to become a retail partner</option>
+                    <option>I want to become a regional distributor</option>
+                    <option>General Support Inquiry</option>
+                 </select>
+               </div>
+               <div className="flex flex-col gap-2">
+                 <label className="text-[13px] font-bold text-slate-700">Message</label>
+                 <textarea rows="4" className="px-4 py-3 rounded-[9px] bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#D84835] transition-colors" placeholder="Tell us about your requirements..."></textarea>
+               </div>
+               <button className="slide-bg-primary text-white px-8 py-4 rounded-[9px] font-bold text-[14px] w-full mt-4">
+                 Submit Inquiry
+               </button>
+             </form>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 4: Map */}
+      <div className="px-[2vw] pt-24 w-full flex-1">
+        <FadeInSection>
+          <div className="mb-6">
+             <h2 className="text-[24px] font-bold text-slate-900">Our National Network</h2>
+             <p className="text-[14px] text-slate-500">Live operational map of our HQ, Warehouses, and 100+ authorized dealers.</p>
+          </div>
+          <div className="w-full h-[600px] bg-slate-100 rounded-[12px] overflow-hidden border border-slate-200 shadow-sm relative">
             <LeafletMap />
           </div>
         </FadeInSection>
@@ -881,6 +1188,498 @@ function ContactPage() {
   );
 }
 
+function LeadershipPage() {
+  const leaders = [
+    { name: "Rahul Deshmukh", role: "Founder & Managing Director", desc: "Pioneered the import of biologically appropriate pet foods in India, scaling ABK from a single warehouse to a nationwide network." },
+    { name: "Priya Sharma", role: "Director of Global Sourcing", desc: "Oversees international brand partnerships and ensures strict compliance with FSSAI and international quality standards." },
+    { name: "Vikram Singh", role: "Head of National Supply Chain", desc: "Manages the complex logistics network across our 100+ distributors, ensuring ready stock and rapid deployment." },
+    { name: "Ananya Patel", role: "Chief Marketing Officer", desc: "Drives B2B retailer education and brand awareness, creating the bridge between global manufacturers and Indian shelves." }
+  ];
+
+  const regional = [
+    { name: "Arjun Reddy", role: "VP - South Region", area: "Bangalore Hub" },
+    { name: "Neha Gupta", role: "VP - West Region", area: "Mumbai Hub" },
+    { name: "Sameer Khan", role: "VP - North Region", area: "Delhi NCR Hub" },
+    { name: "Riya Sen", role: "VP - East Region", area: "Kolkata Hub" }
+  ];
+
+  return (
+    <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
+      {/* Section 1: Hero */}
+      <InnerPageHero 
+        title="Guided by Passion. Driven by Excellence." 
+        subtitle="Meet the experienced executive team working behind the scenes to bring the world's best pet products to your retail shelves."
+        bgImage="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000"
+      />
+      
+      {/* Section 2: Executive Leadership Grid */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+          <div className="mb-12">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-2">Executive Board</h2>
+            <p className="text-[15px] text-slate-500 font-normal">The visionaries navigating ABK Imports through the evolving pet care landscape.</p>
+          </div>
+        </FadeInSection>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {leaders.map((leader, i) => (
+            <FadeInSection key={i} delay={i * 100}>
+              <div className="bg-white rounded-[12px] border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all h-full flex flex-col group">
+                <div className="aspect-square bg-slate-100 relative overflow-hidden">
+                  <img src={`https://placehold.co/400x400/f1f5f9/64748b?text=${leader.name.split(' ')[0]}`} alt={leader.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                </div>
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="text-[20px] font-bold text-slate-900 mb-1">{leader.name}</h3>
+                  <p className="text-[11px] font-bold text-[#D84835] uppercase tracking-widest mb-4">{leader.role}</p>
+                  <p className="text-[14px] text-slate-500 leading-relaxed font-normal">{leader.desc}</p>
+                </div>
+              </div>
+            </FadeInSection>
+          ))}
+        </div>
+      </div>
+
+      {/* Section 3: Founder's Message */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="bg-white border border-slate-200 rounded-[12px] p-12 md:p-16 flex flex-col md:flex-row gap-12 lg:gap-20 items-center shadow-sm">
+             <div className="w-full md:w-1/3 aspect-[4/5] bg-slate-100 rounded-[12px] overflow-hidden shrink-0 shadow-inner">
+                <img src="https://placehold.co/600x800/f8fafc/64748b?text=Founder+Portrait" alt="Rahul Deshmukh" className="w-full h-full object-cover grayscale" />
+             </div>
+             <div className="w-full md:w-2/3">
+                <MessageSquare size={36} className="text-[#D84835] mb-8 opacity-50" />
+                <p className="text-[18px] md:text-[22px] text-slate-800 leading-relaxed mb-8 font-medium italic">
+                  "Our vision was never just to import products. It was to elevate the entire standard of pet care in India. When a retailer places an ABK product on their shelf, they aren't just making a sale—they are passing on a promise of uncompromising quality and biological appropriateness to a pet parent."
+                </p>
+                <div className="border-t border-slate-100 pt-6">
+                  <h4 className="font-bold text-[16px] text-slate-900">Rahul Deshmukh</h4>
+                  <p className="text-[13px] text-[#D84835] font-bold uppercase tracking-widest mt-1">Founder & Managing Director</p>
+                </div>
+             </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 4: Regional Directors */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="mb-12">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-2">Regional Operations Leadership</h2>
+            <p className="text-[15px] text-slate-500 font-normal">Commanding our expansive distribution network across India's four major zones.</p>
+          </div>
+        </FadeInSection>
+        <div className="grid md:grid-cols-4 gap-6">
+           {regional.map((reg, i) => (
+             <FadeInSection key={`reg-${i}`} delay={i * 100}>
+               <div className="bg-white p-8 rounded-[12px] border border-slate-200 shadow-sm flex flex-col items-start hover:border-[#D84835]/30 transition-colors">
+                  <MapIcon className="text-slate-400 mb-4 w-6 h-6" />
+                  <h3 className="font-bold text-[16px] text-slate-900 mb-1">{reg.name}</h3>
+                  <p className="text-[12px] font-bold text-[#D84835] uppercase tracking-widest mb-3">{reg.role}</p>
+                  <p className="text-[13px] text-slate-500 font-medium bg-slate-50 px-3 py-1.5 rounded-[6px] border border-slate-100">{reg.area}</p>
+               </div>
+             </FadeInSection>
+           ))}
+        </div>
+      </div>
+
+      {/* Section 5: Leadership Philosophy */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="mb-12">
+            <h2 className="text-[28px] font-bold text-slate-900 mb-2">Our Leadership Philosophy</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+             <div className="bg-slate-900 p-10 rounded-[12px] text-white">
+                <h4 className="text-[18px] font-bold mb-4 text-white">Zero Compromise</h4>
+                <p className="text-[14px] text-slate-400 leading-relaxed font-normal">We do not cut corners on customs, cold-chain transport, or authenticity. If it isn't perfect, it doesn't leave our warehouse.</p>
+             </div>
+             <div className="bg-slate-900 p-10 rounded-[12px] text-white">
+                <h4 className="text-[18px] font-bold mb-4 text-white">Empower the Retailer</h4>
+                <p className="text-[14px] text-slate-400 leading-relaxed font-normal">Our success is entirely dependent on the success of our retail partners. We lead by providing them with the highest margins and best training.</p>
+             </div>
+             <div className="bg-slate-900 p-10 rounded-[12px] text-white">
+                <h4 className="text-[18px] font-bold mb-4 text-white">Continuous Curation</h4>
+                <p className="text-[14px] text-slate-400 leading-relaxed font-normal">The global pet market evolves rapidly. We lead by constantly analyzing global trends and bringing only the proven winners to Indian shores.</p>
+             </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 6: Careers CTA */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="bg-[#D84835] rounded-[12px] p-16 text-center text-white relative overflow-hidden shadow-lg">
+             <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_50%)] pointer-events-none"></div>
+             <h2 className="text-[32px] font-bold mb-4 relative z-10">Want to join the pack?</h2>
+             <p className="text-[16px] text-red-100 font-medium mb-8 max-w-2xl mx-auto relative z-10">We are always looking for passionate logistics experts, brand managers, and sales directors to help us grow.</p>
+             <button className="bg-white text-[#D84835] px-8 py-3.5 rounded-[9px] font-bold text-[14px] shadow-sm hover:bg-red-50 transition-colors relative z-10">
+                View Open Positions
+             </button>
+          </div>
+        </FadeInSection>
+      </div>
+
+    </div>
+  );
+}
+
+function AwardsPage() {
+  const milestones = [
+    { year: "2010", title: "The ABK Journey Begins", desc: "Founded in Pune with a mission to elevate the standard of pet care products available to Indian pet parents." },
+    { year: "2014", title: "Orijen & Acana Partnership", desc: "Secured the exclusive national distribution rights for Champion Petfoods, introducing biologically appropriate diets to India." },
+    { year: "2018", title: "Best B2B Pet Distributor Award", desc: "Recognized at the National Pet Industry Awards for outstanding supply chain reliability and retailer support." },
+    { year: "2021", title: "Launch of In-House Brands", desc: "Leveraging a decade of market insight to launch high-quality, high-margin in-house lines like Chip Chops and Kittos." },
+    { year: "2024", title: "100+ Distributor Network", desc: "Successfully scaled operations to include super-stockists and distributors covering every major state in the country." },
+    { year: "2026", title: "The ABK Experience Center", desc: "Opened a state-of-the-art facility in Pune for retailers and groomers to interact directly with global product lines." }
+  ];
+
+  return (
+    <div className="w-full pb-24 text-left min-h-screen bg-white">
+      {/* Section 1: Hero */}
+      <InnerPageHero 
+        title="A Decade of Industry Recognition." 
+        subtitle="Our commitment to quality and retailer success has marked our journey with significant industry milestones and awards."
+        bgImage="https://images.unsplash.com/photo-1531685250784-7569952593d2?auto=format&fit=crop&q=80&w=2000"
+      />
+      
+      {/* Section 2: Timeline */}
+      <div className="px-[2vw] pt-24 max-w-5xl">
+        <FadeInSection>
+          <div className="mb-16 border-b border-slate-100 pb-6">
+            <h2 className="text-[28px] font-bold text-slate-900">Historical Milestones</h2>
+          </div>
+        </FadeInSection>
+        <div className="space-y-12">
+          {milestones.map((milestone, i) => (
+            <FadeInSection key={i} delay={i * 100}>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-12 group">
+                <div className="md:w-32 shrink-0">
+                  <span className="text-[32px] md:text-[40px] font-black text-slate-200 group-hover:text-[#D84835] transition-colors duration-500">{milestone.year}</span>
+                </div>
+                <div className="flex-1 pb-12 border-b border-slate-50 group-last:border-0">
+                  <h3 className="text-[20px] font-bold text-slate-900 mb-3">{milestone.title}</h3>
+                  <p className="text-[15px] text-slate-500 leading-relaxed font-normal max-w-2xl">{milestone.desc}</p>
+                </div>
+              </div>
+            </FadeInSection>
+          ))}
+        </div>
+      </div>
+
+      {/* Section 3: Industry Awards Grid */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="mb-12 border-b border-slate-100 pb-6">
+            <h2 className="text-[28px] font-bold text-slate-900">Industry Awards</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+               <div key={`award-${i}`} className="bg-slate-50 border border-slate-100 p-8 rounded-[12px] flex items-start gap-4">
+                  <Award className="text-[#D84835] w-8 h-8 shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-[16px] text-slate-900 mb-1">National Pet Retail Excellence {2020 + i}</h4>
+                    <p className="text-[13px] text-slate-500 font-normal">Awarded for the most reliable B2B supply chain in the western region.</p>
+                  </div>
+               </div>
+            ))}
+          </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 4: Certifications */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+          <div className="bg-slate-900 rounded-[12px] p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-lg">
+             <div className="text-white max-w-lg">
+               <h2 className="text-[28px] font-bold mb-4">Fully Certified & Compliant</h2>
+               <p className="text-[14px] text-slate-400 leading-relaxed font-normal">ABK Imports operates under strict adherence to all Indian import laws. We hold valid FSSAI licenses, Animal Quarantine (AQCS) clearances, and ISO certifications for warehouse management.</p>
+             </div>
+             <div className="flex gap-6">
+               <div className="w-24 h-24 bg-white/10 rounded-[12px] border border-white/20 flex items-center justify-center backdrop-blur-sm">
+                 <Shield className="text-white w-10 h-10" />
+               </div>
+               <div className="w-24 h-24 bg-white/10 rounded-[12px] border border-white/20 flex items-center justify-center backdrop-blur-sm">
+                 <CheckCircle className="text-white w-10 h-10" />
+               </div>
+             </div>
+          </div>
+        </FadeInSection>
+      </div>
+
+    </div>
+  );
+}
+
+function QualityPage() {
+  return (
+    <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
+      {/* Section 1: Hero */}
+      <InnerPageHero 
+        title="Zero Compromise on Authenticity." 
+        subtitle="We maintain the strictest import protocols to ensure every product arriving on your shelf is 100% genuine and safe."
+        bgImage="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&q=80&w=2000"
+      />
+      
+      {/* Section 2: 3 Pillars Grid */}
+      <div className="px-[2vw] pt-24">
+        <div className="grid md:grid-cols-3 gap-8">
+          <FadeInSection delay={100}>
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-[#D84835]/10 rounded-[9px] flex items-center justify-center mb-6">
+                <Shield className="text-[#D84835] w-7 h-7" />
+              </div>
+              <h3 className="text-[18px] font-bold text-slate-900 mb-4">Direct Manufacturer Sourcing</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
+                We bypass grey markets and regional sub-distributors. Every global brand in our catalogue is sourced directly from the original manufacturing facilities, guaranteeing authenticity.
+              </p>
+            </div>
+          </FadeInSection>
+          
+          <FadeInSection delay={200}>
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-[#D84835]/10 rounded-[9px] flex items-center justify-center mb-6">
+                <Box className="text-[#D84835] w-7 h-7" />
+              </div>
+              <h3 className="text-[18px] font-bold text-slate-900 mb-4">Climate-Controlled Transit</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
+                Premium biologically appropriate foods require strict thermal management. From the shipping containers to our central warehouses, we monitor temperatures meticulously.
+              </p>
+            </div>
+          </FadeInSection>
+          
+          <FadeInSection delay={300}>
+            <div className="bg-white p-10 rounded-[12px] border border-slate-200 shadow-sm h-full hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-[#D84835]/10 rounded-[9px] flex items-center justify-center mb-6">
+                <FileText className="text-[#D84835] w-7 h-7" />
+              </div>
+              <h3 className="text-[18px] font-bold text-slate-900 mb-4">FSSAI & Customs Compliance</h3>
+              <p className="text-[14px] text-slate-500 leading-relaxed font-normal">
+                Every imported batch undergoes rigorous customs clearance, animal quarantine checks, and FSSAI approvals. We provide complete transparency for every SKU.
+              </p>
+            </div>
+          </FadeInSection>
+        </div>
+      </div>
+
+      {/* Section 3: The 4 Step Process */}
+      <div className="px-[2vw] pt-32">
+         <FadeInSection>
+            <div className="mb-12">
+               <h2 className="text-[28px] font-bold text-slate-900 mb-2">Our Secure Supply Chain</h2>
+               <p className="text-[15px] text-slate-500 font-normal">How a product travels from a global manufacturer to your retail shelf.</p>
+            </div>
+            <div className="space-y-6 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-slate-200">
+               {/* Step 1 */}
+               <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-slate-900 text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10">1</div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 bg-white rounded-[12px] border border-slate-200 shadow-sm">
+                     <h3 className="font-bold text-[16px] text-slate-900 mb-2">Factory Origin</h3>
+                     <p className="text-[13px] text-slate-500 font-normal">Pallets are loaded directly at the brand's manufacturing facility (e.g., Champion Petfoods in Canada) and sealed.</p>
+                  </div>
+               </div>
+               {/* Step 2 */}
+               <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-slate-900 text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10">2</div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 bg-white rounded-[12px] border border-slate-200 shadow-sm">
+                     <h3 className="font-bold text-[16px] text-slate-900 mb-2">Port & Customs Clearance</h3>
+                     <p className="text-[13px] text-slate-500 font-normal">Containers arrive in India and undergo AQCS (Animal Quarantine) and strict FSSAI inspections before being released.</p>
+                  </div>
+               </div>
+               {/* Step 3 */}
+               <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-slate-900 text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10">3</div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 bg-white rounded-[12px] border border-slate-200 shadow-sm">
+                     <h3 className="font-bold text-[16px] text-slate-900 mb-2">ABK Central Warehouse</h3>
+                     <p className="text-[13px] text-slate-500 font-normal">Goods are transferred to our climate-controlled Pune Trade Centre warehouse, barcoded, and synced to the B2B portal.</p>
+                  </div>
+               </div>
+               {/* Step 4 */}
+               <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-[#D84835] text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm relative z-10">4</div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 bg-white rounded-[12px] border border-[#D84835]/30 shadow-md">
+                     <h3 className="font-bold text-[16px] text-[#D84835] mb-2">Retailer Dispatch</h3>
+                     <p className="text-[13px] text-slate-600 font-normal">Orders placed via the portal are picked, packed, and dispatched to your store via our expedited logistics network.</p>
+                  </div>
+               </div>
+            </div>
+         </FadeInSection>
+      </div>
+
+      {/* Section 4: Guarantee Banner */}
+      <div className="px-[2vw] pt-32">
+        <FadeInSection>
+          <div className="bg-[#D84835] rounded-[12px] p-12 text-center text-white shadow-lg">
+             <Shield className="w-12 h-12 mx-auto mb-6 opacity-90" />
+             <h2 className="text-[28px] font-bold mb-4">The ABK Authenticity Guarantee</h2>
+             <p className="text-[15px] text-red-100 font-medium mb-0 max-w-3xl mx-auto">We take full legal and ethical responsibility for every product sold through our network. When you buy from ABK, you are buying peace of mind for yourself and your customers.</p>
+          </div>
+        </FadeInSection>
+      </div>
+    </div>
+  );
+}
+
+function NewsPage() {
+  const newsItems = [
+    { title: "ABK Imports Secures Exclusive Distribution for New Aquatic Line", date: "May 15, 2026", category: "Partnerships" },
+    { title: "Pune Trade Centre Warehouse Expands Capacity by 40%", date: "April 28, 2026", category: "Operations" },
+    { title: "Announcing the 2026 India Grooming Show Dates", date: "April 10, 2026", category: "Events" },
+    { title: "Orijen & Acana Regional Recipes: Supply Chain Update", date: "March 22, 2026", category: "Supply Chain" },
+    { title: "ABK Retailer Portal 3.0: New Inventory Sync Features", date: "March 05, 2026", category: "Technology" }
+  ];
+
+  return (
+    <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
+      {/* Section 1: Hero */}
+      <InnerPageHero 
+        title="Company News & Press." 
+        subtitle="Stay updated on new brand acquisitions, warehouse expansions, and ABK corporate announcements."
+        bgImage="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=2000"
+      />
+      
+      {/* Section 2: Featured News */}
+      <div className="px-[2vw] pt-24">
+        <FadeInSection>
+           <div className="bg-slate-900 rounded-[12px] p-12 flex flex-col lg:flex-row gap-12 items-center shadow-lg">
+              <div className="w-full lg:w-1/2">
+                <span className="px-3 py-1 bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest rounded-md mb-6 inline-block">Featured Press Release</span>
+                <h2 className="text-[28px] md:text-[36px] font-bold text-white leading-tight mb-4">ABK Imports wins 'Distributor of the Year' at the 2026 National Pet Summit.</h2>
+                <p className="text-[15px] text-slate-400 font-normal leading-relaxed mb-8">For the third consecutive year, ABK Imports has been recognized for its flawless supply chain execution and unparalleled retailer support network across India.</p>
+                <button className="slide-bg-primary text-white px-8 py-3.5 rounded-[9px] font-semibold text-[14px] shadow-sm">
+                  Read Full Press Release
+                </button>
+              </div>
+              <div className="w-full lg:w-1/2 aspect-video bg-slate-800 rounded-[9px] border border-slate-700 overflow-hidden">
+                 <img src="https://placehold.co/800x450/1e293b/94a3b8?text=Award+Ceremony" className="w-full h-full object-cover grayscale opacity-50" />
+              </div>
+           </div>
+        </FadeInSection>
+      </div>
+
+      {/* Section 3: News Feed */}
+      <div className="px-[2vw] pt-24 max-w-6xl">
+        <FadeInSection>
+          <div className="mb-10">
+             <h3 className="text-[24px] font-bold text-slate-900">Latest Announcements</h3>
+          </div>
+        </FadeInSection>
+        <div className="grid grid-cols-1 gap-4">
+          {newsItems.map((item, i) => (
+            <FadeInSection key={i} delay={i * 100}>
+              <div className="group flex flex-col md:flex-row md:items-center justify-between p-8 bg-white rounded-[12px] border border-slate-200 hover:border-[#D84835]/40 hover:shadow-md transition-all cursor-pointer">
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="px-3 py-1 bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-bold uppercase tracking-widest rounded-[6px]">{item.category}</span>
+                    <span className="text-[12px] font-medium text-slate-400">{item.date}</span>
+                  </div>
+                  <h3 className="text-[18px] font-bold text-slate-900 group-hover:text-[#D84835] transition-colors">{item.title}</h3>
+                </div>
+                <div className="mt-4 md:mt-0">
+                  <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:bg-[#D84835] group-hover:border-[#D84835] group-hover:text-white transition-all text-slate-400">
+                    <ArrowRight size={18} />
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+          ))}
+        </div>
+      </div>
+
+      {/* Section 4: PR Contact */}
+      <div className="px-[2vw] pt-24">
+         <FadeInSection>
+            <div className="bg-white border border-slate-200 rounded-[12px] p-12 text-center max-w-3xl mx-auto shadow-sm">
+               <Newspaper className="w-10 h-10 mx-auto text-[#D84835] mb-6" />
+               <h3 className="text-[22px] font-bold text-slate-900 mb-3">Media & Press Inquiries</h3>
+               <p className="text-[14px] text-slate-500 font-normal mb-6">For high-resolution brand assets, executive interviews, or official press kit downloads, please contact our PR department.</p>
+               <a href="mailto:pr@abkimports.com" className="text-[#D84835] font-bold text-[14px] hover:underline">pr@abkimports.com</a>
+            </div>
+         </FadeInSection>
+      </div>
+
+    </div>
+  );
+}
+
+function BlogsPage() {
+  const blogs = [
+    { title: 'The rise of grain-free diets in Indian pet retail', date: 'Oct 12, 2026', readTime: '4 min read', category: 'Market Trends', img: "https://placehold.co/600x400/f8fafc/64748b?text=Grain+Free+Trends" },
+    { title: 'Optimizing shelf space for high-margin accessories', date: 'Oct 05, 2026', readTime: '6 min read', category: 'Merchandising', img: "https://placehold.co/600x400/f8fafc/64748b?text=Shelf+Optimization" },
+    { title: 'Building customer loyalty through premium pet grooming', date: 'Sep 28, 2026', readTime: '5 min read', category: 'Retail Strategy', img: "https://placehold.co/600x400/f8fafc/64748b?text=Grooming+Loyalty" },
+    { title: 'Understanding biologically appropriate nutrition', date: 'Sep 15, 2026', readTime: '7 min read', category: 'Product Education', img: "https://placehold.co/600x400/f8fafc/64748b?text=Nutrition+Education" },
+    { title: 'How to successfully host an in-store pet adoption event', date: 'Sep 02, 2026', readTime: '4 min read', category: 'Community', img: "https://placehold.co/600x400/f8fafc/64748b?text=Adoption+Events" },
+    { title: 'The growing demand for interactive enrichment toys', date: 'Aug 21, 2026', readTime: '5 min read', category: 'Market Trends', img: "https://placehold.co/600x400/f8fafc/64748b?text=Enrichment+Toys" }
+  ];
+
+  return (
+    <div className="w-full pb-24 text-left min-h-screen bg-slate-50">
+      {/* Section 1: Hero */}
+      <InnerPageHero 
+        title="Retailer Insights & Strategy." 
+        subtitle="Actionable advice, market trends, and merchandising strategies to help you grow your pet retail business."
+        bgImage="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&q=80&w=2000"
+      />
+      
+      {/* Section 2: Category Filter (Visual Only) */}
+      <div className="px-[2vw] pt-16">
+         <FadeInSection>
+            <div className="flex flex-wrap gap-3">
+               <button className="px-5 py-2 rounded-full bg-slate-900 text-white text-[13px] font-bold">All Articles</button>
+               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Market Trends</button>
+               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Merchandising</button>
+               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Product Education</button>
+               <button className="px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 text-[13px] font-bold transition-colors">Retail Strategy</button>
+            </div>
+         </FadeInSection>
+      </div>
+
+      {/* Section 3: Blog Grid */}
+      <div className="px-[2vw] pt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogs.map((blog, i) => (
+            <FadeInSection key={i} delay={i * 100}>
+              <article className="bg-white border border-slate-200 rounded-[12px] overflow-hidden hover:shadow-lg hover:border-slate-300 transition-all duration-300 group cursor-pointer h-full flex flex-col">
+                <div className="w-full aspect-[3/2] bg-slate-100 relative overflow-hidden border-b border-slate-100">
+                  <img src={blog.img} alt={blog.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-[6px] border border-slate-200 text-[10px] font-bold text-slate-700 uppercase tracking-widest shadow-sm">
+                    {blog.category}
+                  </div>
+                </div>
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-[18px] font-bold text-slate-900 mb-4 leading-snug group-hover:text-[#D84835] transition-colors">
+                    {blog.title}
+                  </h3>
+                  <div className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between text-[12px] font-medium text-slate-500">
+                    <time dateTime={new Date(blog.date).toISOString()}>{blog.date}</time>
+                    <span className="flex items-center gap-1.5"><Clock size={14} /> {blog.readTime}</span>
+                  </div>
+                </div>
+              </article>
+            </FadeInSection>
+          ))}
+        </div>
+      </div>
+
+      {/* Section 4: Newsletter Box */}
+      <div className="px-[2vw] pt-24">
+         <FadeInSection>
+            <div className="bg-[#D84835] rounded-[12px] p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-lg">
+               <div className="text-white max-w-lg">
+                 <h2 className="text-[28px] font-bold mb-3">Subscribe to Retailer Insights</h2>
+                 <p className="text-[14px] text-red-100 font-medium">Get the latest market trends, merchandising tips, and brand updates delivered straight to your inbox every month.</p>
+               </div>
+               <div className="w-full md:w-auto flex gap-3">
+                 <input type="email" placeholder="Store email address" className="w-full md:w-64 px-4 py-3.5 rounded-[9px] bg-white border-0 text-slate-900 text-[14px] focus:outline-none focus:ring-2 focus:ring-white/50" />
+                 <button className="bg-slate-900 text-white px-6 py-3.5 rounded-[9px] font-bold text-[14px] hover:bg-slate-800 transition-colors whitespace-nowrap">
+                   Subscribe
+                 </button>
+               </div>
+            </div>
+         </FadeInSection>
+      </div>
+
+    </div>
+  );
+}
 
 // ---------------------------
 // HELPER COMPONENTS
@@ -906,7 +1705,15 @@ function NavMegaMenu({ title, featuredTitle, featuredDesc, featuredBtn, col1Titl
               </h3>
               <p className="text-slate-300 text-[12.5px] mt-3 leading-relaxed font-normal">{featuredDesc}</p>
             </div>
-            <button onClick={onFeatureClick} className="relative z-10 slide-bg-secondary text-slate-900 py-2.5 px-5 rounded-[9px] text-xs font-bold mt-8 w-fit shadow-sm border border-slate-200/50">
+            <button onClick={(e) => {
+              if (onFeatureClick) onFeatureClick();
+              // Instantly break the CSS hover state to force the menu to hide
+              const dropdownParent = e.currentTarget.closest('.group');
+              if (dropdownParent) {
+                dropdownParent.classList.remove('group');
+                setTimeout(() => dropdownParent.classList.add('group'), 150);
+              }
+            }} className="relative z-10 slide-bg-secondary text-slate-900 py-2.5 px-5 rounded-[9px] text-xs font-bold mt-8 w-fit shadow-sm border border-slate-200/50">
               {featuredBtn}
             </button>
           </div>
@@ -931,7 +1738,17 @@ function NavMegaMenu({ title, featuredTitle, featuredDesc, featuredBtn, col1Titl
 
 function MegaMenuLink({ icon, title, desc, onClick }) {
   return (
-    <a href="#" onClick={(e) => { e.preventDefault(); if(onClick) onClick(); }} aria-label={title} className="flex items-start gap-3 group/link cursor-pointer p-2 -mx-2 rounded-lg hover:bg-slate-50 transition-colors outline-none focus:ring-2 focus:ring-[#D84835]/50">
+    <a href="#" onClick={(e) => { 
+      e.preventDefault(); 
+      if(onClick) onClick(); 
+      
+      // Instantly break the CSS hover state to force the menu to hide
+      const dropdownParent = e.currentTarget.closest('.group');
+      if (dropdownParent) {
+        dropdownParent.classList.remove('group');
+        setTimeout(() => dropdownParent.classList.add('group'), 150);
+      }
+    }} aria-label={title} className="flex items-start gap-3 group/link cursor-pointer p-2 -mx-2 rounded-lg hover:bg-slate-50 transition-colors outline-none focus:ring-2 focus:ring-[#D84835]/50">
       <div className="bg-slate-50 border border-slate-100 text-slate-500 p-2 rounded-lg group-hover/link:border-[#D84835]/20 group-hover/link:bg-[#D84835]/10 group-hover/link:text-[#D84835] transition-colors mt-0.5">
         {icon}
       </div>
