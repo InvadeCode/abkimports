@@ -159,7 +159,8 @@ export default function App() {
               <img src="https://www.abkgrooming.com/cdn/shop/files/abk_red_logo.png" alt="ABK Imports Logo" className="h-[30px] md:h-[35px] object-contain" />
             </button>
             
-            <div className="hidden lg:flex items-center justify-center gap-6 xl:gap-8 text-[13px] font-semibold text-slate-600">
+            {/* Increased gaps (gap-8 xl:gap-12) to beautifully spread out the menu items */}
+            <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-12 text-[13px] font-semibold text-slate-600">
             
               <NavMegaMenu 
                 title="About Us"
@@ -187,10 +188,14 @@ export default function App() {
               <button onClick={() => setActivePage('contact')} className="hover:text-[#D84835] transition-colors py-2 focus:outline-none">Contact</button>
             </div>
             
-            <div className="flex items-center gap-4 text-sm font-medium pr-1">
-              <button className="slide-bg-primary text-white px-6 py-2.5 rounded-[9px] shadow-sm shadow-[#D84835]/20 text-[13px] font-semibold focus:outline-none">
-                Retailer Login
-              </button>
+            {/* Replaced Retailer Login with Social Icons */}
+            <div className="flex items-center gap-5 text-slate-400 pr-4">
+              <a href="#" aria-label="LinkedIn" className="hover:text-[#D84835] transition-colors focus:outline-none">
+                <Linkedin size={18} />
+              </a>
+              <a href="#" aria-label="Instagram" className="hover:text-[#D84835] transition-colors focus:outline-none">
+                <Instagram size={18} />
+              </a>
             </div>
           </nav>
         </div>
